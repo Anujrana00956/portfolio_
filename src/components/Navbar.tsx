@@ -6,18 +6,8 @@ import {
   AnimatePresence,
   useScroll,
   useMotionValueEvent,
-  Variants,
 } from "framer-motion";
-import {
-  Menu,
-  X,
-  Home,
-  User,
-  Code,
-  Briefcase,
-  FolderOpen,
-  Mail,
-} from "lucide-react";
+import { Menu, X, Home, User, Code, Briefcase, FolderOpen, Mail, Award } from "lucide-react";
 import Link from "next/link";
 import clsx from "clsx";
 import NavbarLogo from "./NavbarLogo";
@@ -28,6 +18,7 @@ const navLinks = [
   { label: "Skills", href: "#skills", icon: Code },
   { label: "Experience", href: "#experience", icon: Briefcase },
   { label: "Projects", href: "#projects", icon: FolderOpen },
+  { label: "Certifications", href: "#certifications", icon: Award },
   { label: "Contact", href: "#contact", icon: Mail },
 ];
 
@@ -38,12 +29,12 @@ export default function Navbar() {
   const { scrollY } = useScroll();
   const [isScrolling, setIsScrolling] = useState(false);
 
-  // Detect scroll to toggle navbar background
+  // Toggle navbar background on scroll
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 20);
   });
 
-  // Detect section in view
+  // Detect active section
   useEffect(() => {
     const handleScroll = () => {
       if (isScrolling) return;
@@ -71,39 +62,39 @@ export default function Navbar() {
   }, [isScrolling]);
 
   // Smooth scroll
- const handleSmoothScroll = (
-  e: React.MouseEvent,
-  href: string,
-  closeMenu = false
-) => {
-  e.preventDefault();
-  if (closeMenu) setIsOpen(false);
+  const handleSmoothScroll = (
+    e: React.MouseEvent,
+    href: string,
+    closeMenu = false
+  ) => {
+    e.preventDefault();
+    if (closeMenu) setIsOpen(false);
 
-  setIsScrolling(true); // start scrolling lock
+    setIsScrolling(true);
 
-  if (href === "#" || href === "") {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    setActiveSection("Home"); // update instantly
+    if (href === "#" || href === "") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setActiveSection("Home");
+      setIsScrolling(false);
+      return;
+    }
+
+    const sectionId = href.startsWith("#") ? href.substring(1) : href;
+    const target = document.getElementById(sectionId);
+
+    if (target) {
+      const rect = target.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const navbar = document.querySelector("header");
+      const navbarHeight = navbar ? navbar.clientHeight : 0;
+      const targetPosition = rect.top + scrollTop - navbarHeight - 10;
+
+      window.scrollTo({ top: Math.max(0, targetPosition), behavior: "smooth" });
+      setActiveSection(sectionId.charAt(0).toUpperCase() + sectionId.slice(1));
+    }
+
     setIsScrolling(false);
-    return;
-  }
-
-  const sectionId = href.startsWith("#") ? href.substring(1) : href;
-  const target = document.getElementById(sectionId);
-
-  if (target) {
-    const rect = target.getBoundingClientRect();
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const navbar = document.querySelector("header");
-    const navbarHeight = navbar ? navbar.offsetHeight : 0;
-    const targetPosition = rect.top + scrollTop - navbarHeight - 10;
-
-    window.scrollTo({ top: Math.max(0, targetPosition), behavior: "smooth" });
-    setActiveSection(sectionId.charAt(0).toUpperCase() + sectionId.slice(1)); // instant
-  }
-
-  setIsScrolling(false); // release lock
-};
+  };
 
   return (
     <motion.header
@@ -117,12 +108,12 @@ export default function Navbar() {
       <div className="container mx-auto px-4 lg:px-8 relative">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <Link href="/" className="relative group">
-            <NavbarLogo />
+          <Link href="/" className="flex items-center gap-2">
+            <NavbarLogo className ="w-10 h-10" />
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center space-x-2">
+          <nav className="hidden md:flex items-center space-x-4">
             {navLinks.map((item) => {
               const isActive = activeSection.toLowerCase() === item.label.toLowerCase();
               return (
@@ -132,8 +123,9 @@ export default function Navbar() {
                   onClick={(e) => handleSmoothScroll(e, item.href)}
                   className={clsx(
                     "flex items-center px-4 py-2 rounded-full font-medium transition-all duration-300",
-                    "text-slate-200 hover:text-white hover:bg-cyan-600/20",
-                    isActive && "bg-gradient-to-r from-cyan-400 to-fuchsia-500 text-white shadow-lg"
+                    "text-slate-200 hover:text-white hover:bg-cyan-600/30 hover:scale-105",
+                    isActive &&
+                      "bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white shadow-xl transform scale-105"
                   )}
                 >
                   <item.icon className="h-4 w-4 mr-2" />
@@ -171,8 +163,9 @@ export default function Navbar() {
                     onClick={(e) => handleSmoothScroll(e, item.href, true)}
                     className={clsx(
                       "flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-300",
-                      "text-slate-200 hover:text-white hover:bg-cyan-600/20",
-                      isActive && "bg-gradient-to-r from-cyan-400 to-fuchsia-500 text-white shadow-lg"
+                      "text-slate-200 hover:text-white hover:bg-cyan-600/20 hover:scale-105",
+                      isActive &&
+                        "bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white shadow-xl transform scale-105"
                     )}
                   >
                     <item.icon className="h-5 w-5 mr-2" />

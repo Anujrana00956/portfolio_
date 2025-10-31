@@ -7,37 +7,34 @@ const NavbarLogo = () => {
   return (
     <motion.div
       className="flex items-center gap-3 cursor-pointer group relative"
-      whileHover={{ scale: 1.05 }}
+      whileHover={{ scale: 1.08 }}
       whileTap={{ scale: 0.95 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
     >
       {/* Animated background glow */}
       <motion.div
-        className="absolute -inset-2 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-cyan-500/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 -z-10"
-        initial={{ scale: 0.8 }}
-        whileHover={{
-          scale: 1.1,
-          opacity: 0.6,
-        }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="absolute -inset-2 bg-gradient-to-r from-purple-500/30 via-pink-500/30 to-orange-400/30 rounded-xl blur-xl opacity-0 group-hover:opacity-80 -z-10"
+        initial={{ scale: 0.9 }}
+        whileHover={{ scale: 1.2 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       />
 
-      {/* Icon container with enhanced effects */}
+      {/* Icon container */}
       <motion.div
-        className="relative flex items-center justify-center w-10 h-10 bg-gradient-to-br from-blue-600 via-purple-600 to-cyan-500 rounded-xl shadow-lg"
+        className="relative flex items-center justify-center w-12 h-12 bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 rounded-xl shadow-xl"
         whileHover={{
           rotate: [0, -5, 5, 0],
-          scale: 1.1,
+          scale: 1.15,
         }}
         transition={{
           rotate: { duration: 0.6, ease: "easeInOut" },
           scale: { duration: 0.2, ease: "easeOut" },
         }}
       >
-        {/* Animated code icon */}
+        {/* Code Icon */}
         <motion.div
           whileHover={{
-            scale: [1, 1.2, 1],
+            scale: [1, 1.25, 1],
             rotateY: 360,
           }}
           transition={{
@@ -45,84 +42,59 @@ const NavbarLogo = () => {
             rotateY: { duration: 0.8, ease: "easeInOut" },
           }}
         >
-          <Code2 className="h-5 w-5 text-white drop-shadow-sm" />
+          <Code2 className="h-6 w-6 text-white drop-shadow-lg" />
         </motion.div>
 
-        {/* Inner glow effect */}
+        {/* Inner glow */}
         <motion.div
           className="absolute inset-0.5 bg-gradient-to-br from-white/20 to-transparent rounded-lg"
-          initial={{ opacity: 0.3 }}
-          whileHover={{ opacity: 0.6 }}
+          initial={{ opacity: 0.2 }}
+          whileHover={{ opacity: 0.5 }}
           transition={{ duration: 0.3 }}
-        />
-
-        {/* Outer shadow glow */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-400 rounded-xl opacity-0 group-hover:opacity-40 blur-md -z-10"
-          whileHover={{
-            scale: 1.3,
-            opacity: 0.4,
-          }}
-          transition={{ duration: 0.4 }}
-        />
-
-        {/* Subtle shine effect */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent rounded-xl opacity-0 group-hover:opacity-100 -skew-x-12"
-          initial={{ x: "-100%" }}
-          whileHover={{
-            x: "200%",
-            opacity: [0, 1, 0],
-          }}
-          transition={{
-            duration: 0.8,
-            ease: "easeInOut",
-            delay: 0.1,
-          }}
         />
       </motion.div>
 
-  {/* Professional Smooth Gradient Text Logo */}
-<motion.div className="relative group overflow-hidden">
-  <motion.span
-    className="text-2xl font-semibold text-slate-900 dark:text-white tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 via-purple-500 to-blue-500 transition-all duration-1000 ease-in-out"
-    whileHover={{
-      scale: 1.05,
-      backgroundPosition: "200% center",
-      textShadow: "0 2px 10px rgba(0, 255, 255, 0.25)",
-    }}
-    style={{ backgroundSize: "200% auto" }}
-    transition={{ type: "spring", stiffness: 150, damping: 15 }}
-  >
-    Anuj Rana
-  </motion.span>
+      {/* Text Logo */}
+      <motion.div className="relative overflow-hidden">
+        <motion.span
+          className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 tracking-tight"
+          whileHover={{
+            scale: 1.05,
+            backgroundPosition: "200% center",
+            textShadow: "0 2px 15px rgba(255, 165, 0, 0.35)",
+          }}
+          style={{ backgroundSize: "200% auto" }}
+          transition={{ type: "spring", stiffness: 150, damping: 15 }}
+        >
+          Anuj Rana
+        </motion.span>
 
-  {/* Smooth hover underline */}
-  <motion.div
-    className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-cyan-500 via-purple-500 to-blue-500 rounded-full"
-    initial={{ width: 0 }}
-    whileHover={{ width: "100%" }}
-    transition={{ duration: 0.5, ease: "easeOut" }}
-  />
-</motion.div>
+        {/* Smooth hover underline */}
+        <motion.div
+          className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 rounded-full"
+          initial={{ width: 0 }}
+          whileHover={{ width: "100%" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        />
+      </motion.div>
 
-      {/* Floating particles effect */}
+      {/* Floating particles */}
       {[...Array(3)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-0 group-hover:opacity-60"
+          className="absolute w-1.5 h-1.5 bg-pink-400 rounded-full opacity-0 group-hover:opacity-70"
           style={{
             top: `${20 + i * 15}%`,
-            right: `${-10 + i * 5}%`,
+            right: `${-10 + i * 6}%`,
           }}
           animate={{
-            y: [-10, -20, -10],
-            opacity: [0, 0.6, 0],
+            y: [-10, -25, -10],
+            opacity: [0, 0.7, 0],
             scale: [0.5, 1, 0.5],
           }}
           transition={{
             duration: 2 + i * 0.5,
-            repeat: Number.POSITIVE_INFINITY,
+            repeat: Infinity,
             delay: i * 0.3,
             ease: "easeInOut",
           }}
