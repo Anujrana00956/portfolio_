@@ -3,11 +3,17 @@
 import {
   motion,
   useInView,
-  Variants,
   TargetAndTransition,
 } from "framer-motion";
 import { useRef, useState } from "react";
-import { Briefcase, GraduationCap, Calendar, Code, Sparkles, MapPin } from "lucide-react";
+import {
+  Briefcase,
+  GraduationCap,
+  Calendar,
+  Code,
+  Sparkles,
+  MapPin,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 export default function Experience() {
@@ -72,7 +78,7 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="relative py-24 bg-gradient-to-br from-gray-950 via-gray-900 to-black overflow-hidden text-white"
+      className="relative py-16 sm:py-20 md:py-24 bg-gradient-to-br from-gray-950 via-gray-900 to-black overflow-hidden text-white"
     >
       {/* Background Glow Animation */}
       <motion.div
@@ -88,36 +94,37 @@ export default function Experience() {
 
       {/* Section Header */}
       <motion.div
-        className="text-center mb-20 relative z-10"
+        className="text-center mb-14 sm:mb-16 md:mb-20 relative z-10 px-4"
         initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
       >
-        <h2 className="text-5xl font-extrabold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent mb-4">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent mb-3">
           Professional Journey
         </h2>
-        <p className="text-gray-400 text-lg">
+        <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">
           From training to professional expertise — shaping ideas into mobile excellence.
         </p>
       </motion.div>
 
-      {/* Zigzag Timeline */}
-      <div className="relative max-w-6xl mx-auto" ref={ref}>
+      {/* Timeline */}
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 md:px-8" ref={ref}>
+        {/* Central Line (hidden on small screens) */}
         <motion.div
-          className="absolute left-1/2 top-0 w-1 bg-gradient-to-b from-cyan-400 via-purple-500 to-pink-500 rounded-full"
+          className="hidden md:block absolute left-1/2 top-0 w-1 bg-gradient-to-b from-cyan-400 via-purple-500 to-pink-500 rounded-full"
           initial={{ height: 0 }}
           animate={isInView ? { height: "100%" } : {}}
           transition={{ duration: 1.2, ease: "easeInOut" }}
         />
 
-        <div className="space-y-24">
+        <div className="space-y-20 sm:space-y-24">
           {experiences.map((exp, i) => (
             <motion.div
               key={i}
-              className={`relative flex items-center ${
+              className={`relative flex flex-col md:flex-row items-center ${
                 exp.side === "left"
-                  ? "justify-start text-left"
-                  : "justify-end text-left"
+                  ? "md:justify-start md:text-left"
+                  : "md:justify-end md:text-left"
               }`}
               initial={{ opacity: 0, x: exp.side === "left" ? -100 : 100 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -125,18 +132,18 @@ export default function Experience() {
             >
               {/* Timeline Node */}
               <motion.div
-                className={`absolute left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-br ${exp.gradient} shadow-lg border-4 border-gray-900 z-20`}
+                className={`hidden md:block absolute left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-br ${exp.gradient} shadow-lg border-4 border-gray-900 z-20`}
                 animate={pulse}
               />
 
-              {/* 3D Interactive Card */}
+              {/* Card */}
               <motion.div
                 onMouseMove={tiltEffect}
                 onMouseLeave={resetTilt}
                 style={{
                   transform: `perspective(1000px) rotateY(${tilt.x}deg) rotateX(${tilt.y}deg)`,
                 }}
-                className={`relative w-[90%] md:w-[45%] bg-gray-900/70 backdrop-blur-xl border border-gray-800 rounded-3xl p-8 shadow-2xl hover:shadow-cyan-500/30 transition-all duration-500 group`}
+                className={`relative w-full md:w-[45%] bg-gray-900/70 backdrop-blur-xl border border-gray-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl hover:shadow-cyan-500/30 transition-all duration-500 group`}
               >
                 {/* Gradient Reflection */}
                 <motion.div
@@ -145,10 +152,10 @@ export default function Experience() {
                 />
 
                 {/* Header */}
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex flex-wrap items-center justify-between mb-3 sm:mb-4 gap-2">
                   <div className="flex items-center gap-3">
                     <motion.div
-                      className={`p-3 rounded-xl bg-gradient-to-br ${exp.gradient} shadow-lg`}
+                      className={`p-2 sm:p-3 rounded-xl bg-gradient-to-br ${exp.gradient} shadow-lg`}
                       animate={{ y: [0, -4, 0] }}
                       transition={{
                         duration: 4,
@@ -156,13 +163,13 @@ export default function Experience() {
                         ease: "easeInOut",
                       }}
                     >
-                      <exp.icon className="w-5 h-5 text-white" />
+                      <exp.icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                     </motion.div>
-                    <h3 className="text-xl font-semibold">{exp.title}</h3>
+                    <h3 className="text-lg sm:text-xl font-semibold">{exp.title}</h3>
                   </div>
                   <Badge
                     variant="secondary"
-                    className="text-sm px-3 py-1 bg-white/10 text-white border border-white/10"
+                    className="text-xs sm:text-sm px-3 py-1 bg-white/10 text-white border border-white/10"
                   >
                     <Calendar className="w-3 h-3 mr-1" />
                     {exp.period}
@@ -178,30 +185,30 @@ export default function Experience() {
                 </div>
 
                 {/* Description */}
-                <p className="text-gray-300 leading-relaxed mb-6">
+                <p className="text-gray-300 leading-relaxed text-sm sm:text-base mb-5 sm:mb-6">
                   {exp.description}
                 </p>
 
-                {/* Tech Badges */}
-                <div className="flex flex-wrap gap-3">
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-2 sm:gap-3">
                   {exp.technologies.map((tech, idx) => (
                     <motion.div
                       key={idx}
                       whileHover={{
-                        scale: 1.15,
-                        y: -3,
-                        boxShadow: `0 0 15px rgba(255,255,255,0.2)`,
+                        scale: 1.1,
+                        y: -2,
+                        boxShadow: `0 0 10px rgba(255,255,255,0.2)`,
                       }}
-                      className="px-3 py-1 bg-white/10 rounded-full text-sm text-gray-200 border border-white/10 backdrop-blur-sm cursor-pointer transition"
+                      className="px-3 py-1 bg-white/10 rounded-full text-xs sm:text-sm text-gray-200 border border-white/10 backdrop-blur-sm cursor-pointer transition"
                     >
                       {tech}
                     </motion.div>
                   ))}
                 </div>
 
-                {/* Sparkle Animation */}
+                {/* Sparkles */}
                 <motion.div
-                  className="absolute bottom-4 right-4"
+                  className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4"
                   animate={{
                     scale: [1, 1.3, 1],
                     opacity: [0.5, 1, 0.5],
@@ -212,7 +219,7 @@ export default function Experience() {
                     ease: "easeInOut",
                   }}
                 >
-                  <Sparkles className="w-5 h-5 text-cyan-300" />
+                  <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-300" />
                 </motion.div>
               </motion.div>
             </motion.div>
@@ -222,23 +229,23 @@ export default function Experience() {
 
       {/* Bottom CTA */}
       <motion.div
-        className="mt-24 text-center"
+        className="mt-20 sm:mt-24 text-center px-4"
         initial={{ opacity: 0, y: 40 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, delay: 0.6 }}
       >
         <motion.div
-          className="inline-flex items-center px-10 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-full shadow-lg border border-white/10"
+          className="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-6 sm:px-10 py-3 sm:py-4 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-full shadow-lg border border-white/10"
           whileHover={{
             scale: 1.05,
             boxShadow: "0 0 40px rgba(59,130,246,0.5)",
           }}
         >
-          <Briefcase className="mr-3 text-yellow-300" />
-          <span className="font-semibold text-white text-lg">
+          <Briefcase className="w-5 h-5 text-yellow-300" />
+          <span className="font-semibold text-sm sm:text-lg text-white">
             Let’s Build the Future with Flutter
           </span>
-          <Code className="ml-3 text-yellow-300" />
+          <Code className="w-5 h-5 text-yellow-300" />
         </motion.div>
       </motion.div>
     </section>

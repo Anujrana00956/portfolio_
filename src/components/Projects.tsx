@@ -4,75 +4,175 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useRef, useState, useCallback } from "react";
 
 // Icon components as SVGs
-const ExternalLink = ({ className }:any) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+const ExternalLink = ({ className }: any) => (
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+    />
   </svg>
 );
 
-const Github = ({ className }:any) => (
+const Github = ({ className }: any) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24">
-    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
   </svg>
 );
 
-const Star = ({ className }:any) => (
+const Star = ({ className }: any) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24">
-    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
   </svg>
 );
 
-const Code2 = ({ className }:any) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+const Code2 = ({ className }: any) => (
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+    />
   </svg>
 );
 
-const ChevronLeft = ({ className }:any) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+const ChevronLeft = ({ className }: any) => (
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M15 19l-7-7 7-7"
+    />
   </svg>
 );
 
-const ChevronRight = ({ className }:any) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+const ChevronRight = ({ className }: any) => (
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M9 5l7 7-7 7"
+    />
   </svg>
 );
 
-const User = ({ className }:any) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+const User = ({ className }: any) => (
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+    />
   </svg>
 );
 
-const CheckCircle = ({ className }:any) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+const CheckCircle = ({ className }: any) => (
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+    />
   </svg>
 );
 
-const Sparkles = ({ className }:any) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+const Sparkles = ({ className }: any) => (
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+    />
   </svg>
 );
 
-const ArrowRight = ({ className }:any) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+const ArrowRight = ({ className }: any) => (
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M14 5l7 7m0 0l-7 7m7-7H3"
+    />
   </svg>
 );
 
-const Layers = ({ className }:any) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+const Layers = ({ className }: any) => (
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+    />
   </svg>
 );
 
-const X = ({ className }:any) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+const X = ({ className }: any) => (
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M6 18L18 6M6 6l12 12"
+    />
   </svg>
 );
 
@@ -84,125 +184,215 @@ export default function Projects() {
 
   const projects = [
     {
-      title: "Automated Landing Page System with Low-Code Workflow Integration",
+      title: "Amity Staffing",
       description:
-        "Built a Node.js server integrated with Bubble.io workflows to capture automation data and render dynamic Webflow landing pages. Delivered a seamless API-driven system to generate and update lead-specific pages automatically.",
-      image: "/assets/images/neuropage.png",
+        "A cross-platform Flutter application designed to automate landing page creation workflows with seamless API integrations and Firebase backend. Focused on delivering a responsive, visually engaging UI with real-time data synchronization.",
+      image: "/assets/images/amity_stafing.png",
       technologies: [
-        "Node.js",
-        "Express.js",
-        "Bubble.io",
-        "Webflow",
-        "REST API",
-        "PM2",
+        "Flutter",
+        "Dart",
+        "Firebase",
+        "Git",
+        "GitHub",
+        "REST APIs",
+        "JSON",
+        "Google APIs",
       ],
-      liveUrl:
-        "https://nuro-page-template.webflow.io/landing-page?leadId=1759236061391x708764271528853000",
+      liveUrl: "https://www.amitystaffing.com",
       githubUrl: "#",
       featured: true,
       status: "Live",
-      category: "Automation & Full-Stack",
+      category: "Mobile App – Flutter Development",
       gradient: "from-emerald-400 via-teal-500 to-cyan-600",
-      roles: ["Full-Stack Developer", "Automation Engineer"],
+      roles: ["Flutter Developer", "UI/UX Designer", "API Integrator"],
       responsibilities: [
-        "Developed a Node.js webhook server to capture and process automation data via Bubble.io API connector",
-        "Integrated Node.js APIs into Bubble.io backend workflows to receive automation-triggered lead data",
-        "Created APIs to serve processed lead data to Webflow for dynamic page rendering",
-        "Implemented Webflow dynamic components and symbols to build scalable landing pages",
-        "Developed an API to send generated landing page URLs back to Bubble.io for record keeping",
-        "Automated workflows between Node.js, Bubble.io, and Webflow for seamless data-driven page creation",
+        "Developed a Flutter app with dynamic landing page rendering via REST APIs",
+        "Integrated Firebase for real-time data management and authentication",
+        "Implemented responsive UI for Android and iOS platforms using Flutter widgets",
+        "Handled API calls to automate content updates and data retrieval",
+        "Optimized performance and UI consistency across multiple devices",
       ],
+      appStoreUrl: "https://apps.apple.com/in/app/amity-staffing/id1600065815",
+      playStoreUrl:
+        "https://play.google.com/store/apps/details?id=com.osp.staffonboarding",
     },
     {
-      title: "DAHN – Hospice Nurse Documentation Support App",
+      title: "AirmyMd",
       description:
-        "Full-stack Hospice Nurse Documentation application built with MERN stack featuring user authentication, payment integration, and admin dashboard.",
-      image: "/assets/images/dahnai.png",
+        "A Flutter-based healthcare documentation app built for nurses to manage patient records, notes, and billing securely across platforms with Firebase integration.",
+      image: "/assets/images/airmy_md.png",
       technologies: [
-        "React.js",
-        "Next.js",
-        "Node.js",
-        "Express.js",
-        "MongoDB",
-        "Stripe API",
+        "Flutter",
+        "Dart",
+        "Firebase",
+        "Git",
+        "GitHub",
+        "REST APIs",
+        "JSON",
+        "Google APIs",
       ],
-      liveUrl: "https://www.dahn.ai",
+      liveUrl: "https://airmymd.com",
       githubUrl: "#",
       featured: true,
       status: "Live",
-      category: "Full-Stack",
+      category: "Mobile App – Flutter Development",
       gradient: "from-blue-400 via-indigo-500 to-purple-600",
-      roles: ["Full-Stack Developer", "DevOps Engineer"],
-      responsibilities: [
-        "Built a role-based healthcare web application with Next.js, Node.js, Express.js, and MongoDB",
-        "Implemented patient notes system with create, draft, update, and soft-delete features",
-        "Integrated Stripe for subscription billing and automated renewals via cron jobs",
-        "Developed role-based access control (RBAC) for Admins, Agencies, and Nurses",
-        "Added video upload functionality and automated invoice generation",
-        "Managed server deployments, monitoring, and scaling on AWS EC2 using PM2",
+      roles: [
+        "Flutter Developer",
+        "UI/UX Engineer",
+        "API Integration Specialist",
       ],
+      responsibilities: [
+        "Developed a Flutter mobile app for healthcare documentation and billing",
+        "Integrated Firebase Authentication and Firestore for secure data storage",
+        "Implemented Stripe payment integration for subscription and billing",
+        "Designed intuitive, responsive UI for seamless nurse and admin usage",
+        "Managed push notifications and app state synchronization",
+      ],
+      appStoreUrl: "https://apps.apple.com/in/app/airmymd/id1228248677",
+      playStoreUrl:
+        "https://play.google.com/store/apps/details?id=com.airmymd.app",
     },
     {
-      title: "DocuAI Pro",
+      title: "AirmyMD:AMM Pass Scanner",
       description:
-        "An AI-powered document chatbot with Retrieval-Augmented Generation (RAG). Features include OAuth authentication, PayPal subscription management, and a ChatGPT-like UI.",
-      image: "/assets/images/docuaipro.jpeg",
+        "An AI-powered Flutter application that allows users to chat with their documents using natural language, featuring Firebase authentication and PayPal integration.",
+      image: "/assets/images/amm_pass.png",
       technologies: [
-        "FastAPI",
-        "Next.js",
-        "PostgreSQL",
-        "PayPal",
-        "PyMuPDF",
-        "FAISS",
-        "LangChain",
-        "Hugging Face",
+        "Flutter",
+        "Dart",
+        "Firebase",
+        "Git",
+        "GitHub",
+        "REST APIs",
+        "JSON",
+        "Google APIs",
       ],
-      liveUrl: "/coming-soon",
+      liveUrl: "https://airmymd.com",
       githubUrl: "https://github.com/abhishek-mehta-dev/DocuAI-Pro",
       featured: true,
-      status: "Development",
-      category: "Fullstack",
+      status: "Live",
+      category: "Mobile App – Flutter Development",
       gradient: "from-purple-400 via-pink-500 to-red-500",
-      roles: ["AI Engineer", "Backend Developer", "Frontend Developer"],
+      roles: ["Flutter Developer", "AI Integrator", "Frontend Engineer"],
       responsibilities: [
-        "Architected RAG system using LangChain and FAISS for document processing",
-        "Built FastAPI backend with efficient document parsing using PyMuPDF",
-        "Integrated Hugging Face models for natural language understanding",
-        "Developed Next.js frontend with ChatGPT-like conversational interface",
-        "Implemented OAuth authentication and PayPal subscription system",
-        "Optimized vector search and retrieval for large document collections",
+        "Built a Flutter app integrating AI chat capabilities with document uploads",
+        "Implemented Firebase Authentication and Cloud Firestore for data handling",
+        "Integrated PayPal APIs for subscription management",
+        "Designed a ChatGPT-like responsive interface for mobile users",
+        "Optimized the app for cross-platform performance and accessibility",
       ],
+      appStoreUrl:
+        "https://apps.apple.com/in/app/airmymd-amm-pass-scanner/id6742197065",
+      playStoreUrl:
+        "https://play.google.com/store/apps/details?id=com.ammpass.live",
     },
     {
-      title: "Stripe Connect Integration",
+      title: "CMDIYOGSHALA",
       description:
-        "Full-featured Stripe Connect application built with Next.js, enabling seamless onboarding, account management, and secure payment flows for multi-vendor platforms.",
-      image: "/assets/images/stripe_connect.png",
+        "A Flutter mobile solution for managing multi-vendor payments with Stripe Connect integration and Firebase backend.",
+      image: "/assets/images/cm_di_yogshala.png",
       technologies: [
-        "Next.js",
-        "React",
-        "Stripe Connect",
-        "Node.js",
-        "MongoDB",
+        "Flutter",
+        "Dart",
+        "Firebase",
+        "Git",
+        "GitHub",
+        "REST APIs",
+        "JSON",
+        "Google APIs",
+      ],
+      liveUrl: "https://cmdiyogshala.punjab.gov.in",
+      githubUrl: "https://github.com/abhishek-mehta-dev/stripe_connect",
+      featured: true,
+      status: "Live",
+      category: "Mobile App – Flutter Development",
+      gradient: "from-orange-400 via-amber-500 to-yellow-500",
+      roles: [
+        "Flutter Developer",
+        "Payment Integration Engineer",
+        "UI Designer",
+      ],
+      responsibilities: [
+        "Developed a Flutter app for vendor onboarding and payment tracking",
+        "Integrated Stripe Connect APIs for secure multi-vendor transactions",
+        "Implemented Firebase Cloud Firestore for storing vendor and transaction data",
+        "Built responsive layouts compatible with Android and iOS devices",
+        "Optimized UI performance and API response handling",
+      ],
+      appStoreUrl: "https://apps.apple.com/in/app/cm-di-yogshala/id6479694915",
+      playStoreUrl:
+        "https://play.google.com/store/apps/details?id=com.cmdapp.cmdiyogshala",
+    },
+    {
+      title: "TruGroser – Multi-Vendor Grocery App",
+      description:
+        "A Flutter-based multi-vendor grocery delivery platform with Stripe Connect integration, Firebase backend, and real-time order tracking.",
+      image: "/assets/images/trugroser.png",
+      technologies: [
+        "Flutter",
+        "Dart",
+        "Firebase",
+        "Git",
+        "GitHub",
+        "REST APIs",
+        "JSON",
+        "Google APIs",
       ],
       liveUrl: "/coming-soon",
       githubUrl: "https://github.com/abhishek-mehta-dev/stripe_connect",
       featured: true,
-      status: "Completed",
-      category: "Full-Stack",
+      status: "Live",
+      category: "Mobile App – Flutter Development",
+      gradient: "from-orange-400 via-amber-500 to-yellow-500",
+      roles: ["Flutter Developer", "API Integrator", "UI/UX Specialist"],
+      responsibilities: [
+        "Built responsive cross-platform UI for customers and vendors",
+        "Integrated Firebase Authentication, Firestore, and Stripe APIs",
+        "Implemented product listing, cart management, and order tracking",
+        "Optimized API handling for smooth real-time interactions",
+        "Enhanced UI/UX with material design and responsive layouts",
+      ],
+      appStoreUrl: "https://apps.apple.com/in/app/trugroser/id6738053808",
+      playStoreUrl:
+        "https://play.google.com/store/apps/details?id=com.trugroser.app",
+    },
+    {
+      title: "VentSpace – Community Sharing App",
+      description:
+        "A cross-platform Flutter app that allows users to share thoughts, join communities, and interact anonymously with Firebase authentication and moderation tools.",
+      image: "/assets/images/vent_space.png",
+      technologies: [
+        "Flutter",
+        "Dart",
+        "Firebase",
+        "Git",
+        "GitHub",
+        "REST APIs",
+        "JSON",
+        "Google APIs",
+      ],
+      liveUrl: "https://ventspaceapp.com",
+      githubUrl: "https://github.com/abhishek-mehta-dev/stripe_connect",
+      featured: true,
+      status: "Live",
+      category: "Mobile App – Flutter Development",
       gradient: "from-orange-400 via-amber-500 to-yellow-500",
       roles: [
-        "Payment Integration Specialist",
-        "Full-Stack Developer",
-        "API Developer",
+        "Flutter Developer",
+        "UI/UX Engineer",
+        "Cross-Platform Specialist",
       ],
       responsibilities: [
-        "Implemented complete Stripe Connect integration for multi-vendor payments",
-        "Built secure onboarding flow for vendor account creation and verification",
-        "Developed dashboard for payment management and analytics",
-        "Designed responsive frontend using Next.js and React",
-        "Integrated MongoDB for storing vendor and transaction data",
+        "Developed community-driven Flutter app with real-time updates using Firebase",
+        "Implemented anonymous login and secure user management",
+        "Designed responsive, accessible, and modern UI for Android and iOS",
+        "Handled API integrations for notifications and data retrieval",
+        "Ensured performance optimization and smooth cross-platform experience",
       ],
+      appStoreUrl: "https://apps.apple.com/us/app/ventspace/id1514627232",
+      playStoreUrl:
+        "https://play.google.com/store/apps/details?id=com.application.ventspace",
     },
   ];
 
@@ -216,7 +406,7 @@ export default function Projects() {
 
   const currentProjectData = projects[currentProject];
 
-  const getStatusConfig = (status:any) => {
+  const getStatusConfig = (status: any) => {
     const configs = {
       Live: {
         bg: "bg-emerald-500/20",
@@ -342,8 +532,10 @@ export default function Projects() {
                 {/* Enhanced Card Design */}
                 <div className="relative bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-2xl rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
                   {/* Subtle gradient overlay */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${currentProjectData.gradient} opacity-[0.04] pointer-events-none`} />
-                  
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${currentProjectData.gradient} opacity-[0.04] pointer-events-none`}
+                  />
+
                   {/* Shine effect */}
                   <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.02] to-transparent pointer-events-none" />
 
@@ -357,9 +549,11 @@ export default function Projects() {
 
                   {/* Status Badge */}
                   <div className="absolute top-6 right-6 z-20">
-                    <div className={`flex items-center gap-2 px-4 py-2 ${statusConfig.bg} backdrop-blur-xl rounded-full border ${statusConfig.border} shadow-xl ${statusConfig.glow}`}>
+                    <div
+                      className={`flex items-center gap-2 px-4 py-2 ${statusConfig.bg} backdrop-blur-xl rounded-full border ${statusConfig.border} shadow-xl ${statusConfig.glow}`}
+                    >
                       <motion.div
-                        className={`w-2 h-2 rounded-full ${statusConfig.text.replace("text-", "bg-")}`}
+                        className="w-2 h-2 rounded-full bg-red-500" // <-- set red color
                         animate={{ opacity: [1, 0.4, 1] }}
                         transition={{
                           duration: 2,
@@ -367,7 +561,9 @@ export default function Projects() {
                           ease: "easeInOut",
                         }}
                       />
-                      <span className={`text-xs font-bold ${statusConfig.text} tracking-wide`}>
+                      <span
+                        className={`text-xs font-bold ${statusConfig.text} tracking-wide`}
+                      >
                         {currentProjectData.status.toUpperCase()}
                       </span>
                     </div>
@@ -377,6 +573,7 @@ export default function Projects() {
                   <div className="grid md:grid-cols-2 gap-8 p-8 md:p-12">
                     {/* Image Section */}
                     <div className="relative aspect-video rounded-2xl overflow-hidden group">
+                      
                       {/* Image with enhanced hover */}
                       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-slate-950">
                         <img
@@ -385,11 +582,20 @@ export default function Projects() {
                           className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-1"
                         />
                       </div>
-                      
-                      {/* Gradient overlays */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-                      <div className={`absolute inset-0 bg-gradient-to-br ${currentProjectData.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-                      
+ {/* Primary Action - Live Demo */}
+                        <motion.a
+                          href={currentProjectData.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`w-full flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r ${currentProjectData.gradient} rounded-xl font-bold text-white text-sm hover:shadow-2xl transition-all group relative overflow-hidden`}
+                          whileHover={{ scale: 1.02, y: -2 }}
+                          whileTap={{ scale: 0.98 }}
+                          transition={{ duration: 0.15 }}
+                        >
+                          <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                          <ExternalLink className="h-4 w-4 relative z-10" />
+                          <span className="relative z-10">Live Demo</span>
+                        </motion.a>
                       {/* Category badge */}
                       <div className="absolute bottom-4 left-4 flex items-center gap-2 px-4 py-2 bg-black/70 backdrop-blur-xl rounded-xl border border-white/20 shadow-xl">
                         <Layers className="h-4 w-4 text-blue-400" />
@@ -411,11 +617,16 @@ export default function Projects() {
                         </p>
 
                         {/* Technologies */}
-                        <div className="flex flex-wrap gap-2 mb-8">
+                        <div className="flex flex-wrap gap-3 mb-8">
                           {currentProjectData.technologies.map((tech, i) => (
                             <span
                               key={i}
-                              className="px-3 py-1.5 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 text-xs font-medium text-gray-300 hover:bg-white/10 hover:border-white/20 transition-all cursor-default"
+                              className="px-3 py-1.5 text-xs font-medium text-gray-100 bg-gray-800/40 
+                 border border-gray-700 rounded-lg cursor-default
+                 shadow-[2px_2px_6px_rgba(0,0,0,0.5),-2px_-2px_6px_rgba(255,255,255,0.05)]
+                 transform transition-all duration-300 
+                 hover:scale-105 hover:shadow-[4px_4px_15px_rgba(0,0,0,0.6),-4px_-4px_10px_rgba(255,255,255,0.1)] 
+                 hover:bg-gray-700/50"
                             >
                               {tech}
                             </span>
@@ -425,34 +636,55 @@ export default function Projects() {
 
                       {/* Action Buttons */}
                       <div className="space-y-3">
-                        <div className="grid grid-cols-2 gap-3">
-                          <motion.a
-                            href={currentProjectData.liveUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={`flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r ${currentProjectData.gradient} rounded-xl font-bold text-white text-sm hover:shadow-2xl transition-all group relative overflow-hidden`}
-                            whileHover={{ scale: 1.02, y: -2 }}
-                            whileTap={{ scale: 0.98 }}
-                            transition={{ duration: 0.15 }}
-                          >
-                            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                            <ExternalLink className="h-4 w-4 relative z-10" />
-                            <span className="relative z-10">Live Demo</span>
-                          </motion.a>
+                       
 
-                          <motion.a
-                            href={currentProjectData.githubUrl === "#" ? "/oops" : currentProjectData.githubUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center justify-center gap-2 px-5 py-3 bg-white/10 backdrop-blur-sm rounded-xl font-bold text-white text-sm border border-white/20 hover:bg-white/20 hover:border-white/30 transition-all"
-                            whileHover={{ scale: 1.02, y: -2 }}
-                            whileTap={{ scale: 0.98 }}
-                            transition={{ duration: 0.15 }}
-                          >
-                            <Github className="h-4 w-4" />
-                            Code
-                          </motion.a>
-                        </div>
+                        {/* App Store Buttons - Only show if URLs exist */}
+                        {(currentProjectData.appStoreUrl ||
+                          currentProjectData.playStoreUrl) && (
+                          <div className="grid grid-cols-2 gap-3">
+                            {currentProjectData.appStoreUrl && (
+                              <motion.a
+                                href={currentProjectData.appStoreUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center gap-2 px-4 py-3 bg-black/60 backdrop-blur-sm rounded-xl font-bold text-white text-xs border border-white/20 hover:bg-black/80 hover:border-white/30 transition-all"
+                                whileHover={{ scale: 1.02, y: -2 }}
+                                whileTap={{ scale: 0.98 }}
+                                transition={{ duration: 0.15 }}
+                              >
+                                <svg
+                                  className="h-5 w-5"
+                                  viewBox="0 0 24 24"
+                                  fill="currentColor"
+                                >
+                                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                                </svg>
+                                <span>App Store</span>
+                              </motion.a>
+                            )}
+
+                            {currentProjectData.playStoreUrl && (
+                              <motion.a
+                                href={currentProjectData.playStoreUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center gap-2 px-4 py-3 bg-black/60 backdrop-blur-sm rounded-xl font-bold text-white text-xs border border-white/20 hover:bg-black/80 hover:border-white/30 transition-all"
+                                whileHover={{ scale: 1.02, y: -2 }}
+                                whileTap={{ scale: 0.98 }}
+                                transition={{ duration: 0.15 }}
+                              >
+                                <svg
+                                  className="h-5 w-5"
+                                  viewBox="0 0 24 24"
+                                  fill="currentColor"
+                                >
+                                  <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                                </svg>
+                                <span>Play Store</span>
+                              </motion.a>
+                            )}
+                          </div>
+                        )}
 
                         <motion.button
                           onClick={() => setIsDialogOpen(true)}
@@ -579,7 +811,9 @@ export default function Projects() {
                         className="flex gap-3 p-4 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-all"
                       >
                         <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-gray-300 text-sm leading-relaxed">{resp}</span>
+                        <span className="text-gray-300 text-sm leading-relaxed">
+                          {resp}
+                        </span>
                       </div>
                     ))}
                   </div>
