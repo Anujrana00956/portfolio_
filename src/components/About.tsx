@@ -117,7 +117,7 @@ export default function About() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <img
-            src="/your-picture.jpg"
+            src="/assets/Media.jpeg"
             alt="Anuj Rana"
             className="w-48 h-48 md:w-60 md:h-60 rounded-full object-cover shadow-2xl border-4 border-blue-600 hover:scale-105 transition-transform duration-500"
           />

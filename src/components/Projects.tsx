@@ -186,7 +186,7 @@ export default function Projects() {
     {
       title: "Amity Staffing",
       description:
-        "A cross-platform Flutter application designed to automate landing page creation workflows with seamless API integrations and Firebase backend. Focused on delivering a responsive, visually engaging UI with real-time data synchronization.",
+        "Amity Staffing is a dedicated mobile app designed for hospice nurses to simplify their daily workflow. It allows users to manage job assignments, track attendance, and maintain visit documentation with ease. The app includes an intuitive calendar for scheduling, along with profile and support features to keep everything organized. By reducing manual work and improving efficiency, Amity Staffing helps nurses focus more on delivering quality patient care.",
       image: "/assets/images/amity_stafing.png",
       technologies: [
         "Flutter",
@@ -219,7 +219,7 @@ export default function Projects() {
     {
       title: "AirmyMd",
       description:
-        "A Flutter-based healthcare documentation app built for nurses to manage patient records, notes, and billing securely across platforms with Firebase integration.",
+        "airmyMD is a healthcare management app that helps patients and doctors connect seamlessly. Users can book appointments, store medical records, and manage payments all in one place. Doctors can track appointments, view patient history, and handle billing efficiently. It’s designed to make healthcare simpler, faster, and more accessible for everyone.",
       image: "/assets/images/airmy_md.png",
       technologies: [
         "Flutter",
@@ -256,7 +256,7 @@ export default function Projects() {
     {
       title: "AirmyMD:AMM Pass Scanner",
       description:
-        "An AI-powered Flutter application that allows users to chat with their documents using natural language, featuring Firebase authentication and PayPal integration.",
+        "airmyMD: AMM Pass Scanner is a secure mobile tool for verified first responders and EMTs. It scans encrypted AMM Pass QR codes to instantly access critical patient health data during emergencies. The app ensures quick and accurate decision-making when every second matters. Data access is restricted to licensed personnel for complete security.",
       image: "/assets/images/amm_pass.png",
       technologies: [
         "Flutter",
@@ -290,7 +290,7 @@ export default function Projects() {
     {
       title: "CMDIYOGSHALA",
       description:
-        "A Flutter mobile solution for managing multi-vendor payments with Stripe Connect integration and Firebase backend.",
+        "C.M Di Yogshala (CMDY) is a government initiative by the Punjab administration to promote yoga and meditation across the state. The app connects citizens with certified yoga instructors offering free classes in their local areas. Users can register individually or as groups, schedule sessions, and track attendance seamlessly. CMDY aims to improve both physical and mental well-being while building a mindful, connected community through the daily practice of yoga.",
       image: "/assets/images/cm_di_yogshala.png",
       technologies: [
         "Flutter",
@@ -327,7 +327,7 @@ export default function Projects() {
     {
       title: "TruGroser – Multi-Vendor Grocery App",
       description:
-        "A Flutter-based multi-vendor grocery delivery platform with Stripe Connect integration, Firebase backend, and real-time order tracking.",
+        "TruGroser is a grocery delivery app designed for smooth and reliable online shopping. It helps users order daily essentials and groceries with fast doorstep delivery. With an easy interface and organized categories, it makes bulk and retail grocery management effortless. TruGroser ensures quality, convenience, and timely service for every order.",
       image: "/assets/images/trugroser.png",
       technologies: [
         "Flutter",
@@ -360,7 +360,7 @@ export default function Projects() {
     {
       title: "VentSpace – Community Sharing App",
       description:
-        "A cross-platform Flutter app that allows users to share thoughts, join communities, and interact anonymously with Firebase authentication and moderation tools.",
+        "VentSpace is a mental wellness app designed to give people a safe and judgment-free space to express their feelings. It allows users to vent through text, audio, or video posts—anonymously or openly—and connect with others who share similar experiences. With dedicated groups and mental health categories, it helps users find relatable communities and supportive conversations. The app also offers access to licensed therapists and educational content, empowering users to understand and improve their mental well-being anytime, anywhere.",
       image: "/assets/images/vent_space.png",
       technologies: [
         "Flutter",
@@ -539,13 +539,13 @@ export default function Projects() {
                   {/* Shine effect */}
                   <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.02] to-transparent pointer-events-none" />
 
-                  {/* Featured Badge */}
+                  {/* Featured Badge
                   <div className="absolute top-6 left-6 z-20 flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 backdrop-blur-xl rounded-full border border-yellow-400/40 shadow-xl">
                     <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
                     <span className="text-xs font-bold text-yellow-100 tracking-wide">
                       FEATURED
                     </span>
-                  </div>
+                  </div> */}
 
                   {/* Status Badge */}
                   <div className="absolute top-6 right-6 z-20">
@@ -569,137 +569,132 @@ export default function Projects() {
                     </div>
                   </div>
 
-                  {/* Main Content Grid */}
-                  <div className="grid md:grid-cols-2 gap-8 p-8 md:p-12">
-                    {/* Image Section */}
-                    <div className="relative aspect-video rounded-2xl overflow-hidden group">
-                      
-                      {/* Image with enhanced hover */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-slate-950">
-                        <img
-                          src={currentProjectData.image || "/placeholder.svg"}
-                          alt={currentProjectData.title}
-                          className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-1"
-                        />
-                      </div>
- {/* Primary Action - Live Demo */}
-                        <motion.a
-                          href={currentProjectData.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`w-full flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r ${currentProjectData.gradient} rounded-xl font-bold text-white text-sm hover:shadow-2xl transition-all group relative overflow-hidden`}
-                          whileHover={{ scale: 1.02, y: -2 }}
-                          whileTap={{ scale: 0.98 }}
-                          transition={{ duration: 0.15 }}
-                        >
-                          <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                          <ExternalLink className="h-4 w-4 relative z-10" />
-                          <span className="relative z-10">Live Demo</span>
-                        </motion.a>
-                      {/* Category badge */}
-                      <div className="absolute bottom-4 left-4 flex items-center gap-2 px-4 py-2 bg-black/70 backdrop-blur-xl rounded-xl border border-white/20 shadow-xl">
-                        <Layers className="h-4 w-4 text-blue-400" />
-                        <span className="text-sm font-semibold text-white">
-                          {currentProjectData.category}
-                        </span>
-                      </div>
-                    </div>
+                 {/* Main Content Grid */}
+<div className="grid md:grid-cols-2 gap-8 p-8 md:p-12">
+ {/* Image Section */}
+<div className="relative rounded-2xl overflow-hidden group flex flex-col">
+  {/* Image with enhanced hover */}
+  <div className="relative w-full h-[380px] md:h-[300px] rounded-2xl overflow-hidden">
+    <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-slate-950">
+      <img
+        src={currentProjectData.image || "/placeholder.svg"}
+        alt={currentProjectData.title}
+        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-1"
+      />
+    </div>
 
-                    {/* Details Section */}
-                    <div className="flex flex-col justify-between">
-                      <div>
-                        <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
-                          {currentProjectData.title}
-                        </h3>
+    {/* Category badge */}
+    <div className="absolute bottom-4 left-4 flex items-center gap-2 px-4 py-2 bg-black/70 backdrop-blur-xl rounded-xl border border-white/20 shadow-xl">
+      <Layers className="h-4 w-4 text-blue-400" />
+      <span className="text-sm font-semibold text-white">
+        {currentProjectData.category}
+      </span>
+    </div>
+  </div>
 
-                        <p className="text-gray-300 text-base leading-relaxed mb-6">
-                          {currentProjectData.description}
-                        </p>
+  {/* Stats + Buttons below image */}
+  <div className="mt-6 space-y-6">
+    {/* Example Stats */}
+   {(currentProjectData.appStoreUrl || currentProjectData.playStoreUrl) && (
+        <div className="grid grid-cols-2 gap-3">
+          {currentProjectData.appStoreUrl && (
+            <motion.a
+              href={currentProjectData.appStoreUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 px-4 py-3 bg-black/60 backdrop-blur-sm rounded-xl font-bold text-white text-xs border border-white/20 hover:bg-black/80 hover:border-white/30 transition-all"
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.15 }}
+            >
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+              </svg>
+              <span>App Store</span>
+            </motion.a>
+          )}
+          {currentProjectData.playStoreUrl && (
+            <motion.a
+              href={currentProjectData.playStoreUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 px-5 py-3 bg-black/60 backdrop-blur-sm rounded-xl font-bold text-white text-xs border border-white/20 hover:bg-black/80 hover:border-white/30 transition-all"
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.15 }}
+            >
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+              </svg>
+              <span>Play Store</span>
+            </motion.a>
+          )}
+        </div>
+      )}
 
-                        {/* Technologies */}
-                        <div className="flex flex-wrap gap-3 mb-8">
-                          {currentProjectData.technologies.map((tech, i) => (
-                            <span
-                              key={i}
-                              className="px-3 py-1.5 text-xs font-medium text-gray-100 bg-gray-800/40 
-                 border border-gray-700 rounded-lg cursor-default
-                 shadow-[2px_2px_6px_rgba(0,0,0,0.5),-2px_-2px_6px_rgba(255,255,255,0.05)]
-                 transform transition-all duration-300 
-                 hover:scale-105 hover:shadow-[4px_4px_15px_rgba(0,0,0,0.6),-4px_-4px_10px_rgba(255,255,255,0.1)] 
-                 hover:bg-gray-700/50"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
+    {/* Live Demo + App Store Buttons (unchanged) */}
+    <motion.a
+      href={currentProjectData.liveUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`w-full flex items-center justify-center gap-2 px-5 py-3.5 bg-gradient-to-r ${currentProjectData.gradient} rounded-xl font-bold text-white text-sm hover:shadow-2xl transition-all group relative overflow-hidden`}
+      whileHover={{ scale: 1.02, y: -2 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ duration: 0.15 }}
+    >
+      <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+      <ExternalLink className="h-4 w-4 relative z-10" />
+      <span className="relative z-10">Live Demo</span>
+    </motion.a>
 
-                      {/* Action Buttons */}
-                      <div className="space-y-3">
-                       
+    
+  </div>
+</div>
 
-                        {/* App Store Buttons - Only show if URLs exist */}
-                        {(currentProjectData.appStoreUrl ||
-                          currentProjectData.playStoreUrl) && (
-                          <div className="grid grid-cols-2 gap-3">
-                            {currentProjectData.appStoreUrl && (
-                              <motion.a
-                                href={currentProjectData.appStoreUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center justify-center gap-2 px-4 py-3 bg-black/60 backdrop-blur-sm rounded-xl font-bold text-white text-xs border border-white/20 hover:bg-black/80 hover:border-white/30 transition-all"
-                                whileHover={{ scale: 1.02, y: -2 }}
-                                whileTap={{ scale: 0.98 }}
-                                transition={{ duration: 0.15 }}
-                              >
-                                <svg
-                                  className="h-5 w-5"
-                                  viewBox="0 0 24 24"
-                                  fill="currentColor"
-                                >
-                                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-                                </svg>
-                                <span>App Store</span>
-                              </motion.a>
-                            )}
 
-                            {currentProjectData.playStoreUrl && (
-                              <motion.a
-                                href={currentProjectData.playStoreUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center justify-center gap-2 px-4 py-3 bg-black/60 backdrop-blur-sm rounded-xl font-bold text-white text-xs border border-white/20 hover:bg-black/80 hover:border-white/30 transition-all"
-                                whileHover={{ scale: 1.02, y: -2 }}
-                                whileTap={{ scale: 0.98 }}
-                                transition={{ duration: 0.15 }}
-                              >
-                                <svg
-                                  className="h-5 w-5"
-                                  viewBox="0 0 24 24"
-                                  fill="currentColor"
-                                >
-                                  <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-                                </svg>
-                                <span>Play Store</span>
-                              </motion.a>
-                            )}
-                          </div>
-                        )}
+  {/* Details Section */}
+  <div className="flex flex-col justify-between">
+    <div>
+      <h3 className="text-3xl md:text-4xl font-bold text-white mb-2 leading-tight">
+        {currentProjectData.title}
+      </h3>
+      <p className="text-gray-300 text-base leading-relaxed mb-4">
+        {currentProjectData.description}
+      </p>
 
-                        <motion.button
-                          onClick={() => setIsDialogOpen(true)}
-                          className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-white/5 backdrop-blur-sm rounded-xl font-bold text-white text-sm border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all group"
-                          whileHover={{ scale: 1.01, y: -1 }}
-                          whileTap={{ scale: 0.99 }}
-                          transition={{ duration: 0.15 }}
-                        >
-                          <User className="h-4 w-4" />
-                          View Roles & Responsibilities
-                          <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-200" />
-                        </motion.button>
-                      </div>
-                    </div>
-                  </div>
+      {/* Technologies */}
+      <div className="flex flex-wrap gap-3 mb-5">
+        {currentProjectData.technologies.map((tech, i) => (
+          <span
+            key={i}
+            className="px-3 py-1.5 text-xs font-medium text-gray-100 bg-gray-800/40 
+              border border-gray-700 rounded-lg cursor-default
+              shadow-[2px_2px_6px_rgba(0,0,0,0.5),-2px_-2px_6px_rgba(255,255,255,0.05)]
+              transform transition-all duration-300 
+              hover:scale-105 hover:shadow-[4px_4px_15px_rgba(0,0,0,0.6),-4px_-4px_10px_rgba(255,255,255,0.1)] 
+              hover:bg-gray-700/50"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    {/* View Roles Button */}
+    <motion.button
+      onClick={() => setIsDialogOpen(true)}
+      className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-white/5 backdrop-blur-sm rounded-xl font-bold text-white text-sm border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all group"
+      whileHover={{ scale: 1.01, y: -1 }}
+      whileTap={{ scale: 0.99 }}
+      transition={{ duration: 0.15 }}
+    >
+      <User className="h-4 w-4" />
+      View Roles & Responsibilities
+      <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-200" />
+    </motion.button>
+  </div>
+</div>
+
                 </div>
               </motion.div>
             </AnimatePresence>

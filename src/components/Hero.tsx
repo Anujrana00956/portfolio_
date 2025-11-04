@@ -3,8 +3,23 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Mail, Download, ChevronDown, Code, Award, Layers, GitBranch } from "lucide-react";
-import { SiFlutter, SiDart, SiFirebase, SiAndroid, SiIos, SiGit } from "react-icons/si";
+import {
+  Mail,
+  Download,
+  ChevronDown,
+  Code,
+  Award,
+  Layers,
+  GitBranch,
+} from "lucide-react";
+import {
+  SiFlutter,
+  SiDart,
+  SiFirebase,
+  SiAndroid,
+  SiIos,
+  SiGit,
+} from "react-icons/si";
 
 export default function Hero() {
   const titles = useMemo(
@@ -41,7 +56,6 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-slate-900 via-slate-800 to-slate-950 text-white px-6 md:px-12 pt-24">
-
       {/* Floating background blobs */}
       <motion.div
         className="absolute top-0 left-0 w-full h-full pointer-events-none"
@@ -63,13 +77,16 @@ export default function Hero() {
               x: [`0%`, `${Math.random() * 15 - 7}%`, `0%`],
               scale: [1, 1.5, 1],
             }}
-            transition={{ duration: Math.random() * 6 + 4, repeat: Infinity, ease: "easeInOut" }}
+            transition={{
+              duration: Math.random() * 6 + 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
           />
         ))}
       </motion.div>
 
       <div className="relative z-10 text-center max-w-5xl flex flex-col gap-10 min-h-[80vh] justify-center">
-
         {/* Greeting */}
         <motion.div
           className="inline-block px-8 py-4 bg-cyan-600/20 rounded-full text-cyan-100 font-semibold text-lg md:text-xl"
@@ -109,7 +126,11 @@ export default function Hero() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          Crafting <span className="text-cyan-300 font-semibold">modern Flutter apps</span> with smooth UI/UX and professional design.
+          Crafting{" "}
+          <span className="text-cyan-300 font-semibold">
+            modern Flutter apps
+          </span>{" "}
+          with smooth UI/UX and professional design.
         </motion.p>
 
         {/* Buttons */}
@@ -126,7 +147,11 @@ export default function Hero() {
             <Mail className="mr-2 h-5 w-5 animate-bounce" /> Let’s Connect
           </Button>
 
-          <a href="/assets/resume_anuj_rana.pdf" target="_blank" rel="noopener noreferrer">
+          <a
+            href="/assets/ANUJ RANA (1).pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Button className="border-2 border-cyan-400 text-cyan-100 px-10 py-5 rounded-full text-lg md:text-xl font-semibold transition-all duration-300 hover:bg-slate-800/50">
               <Download className="mr-2 h-5 w-5 animate-bounce" /> Resume
             </Button>
@@ -151,31 +176,12 @@ export default function Hero() {
               className="p-8 rounded-3xl border border-cyan-400/20 bg-gradient-to-br from-slate-900/70 to-slate-800/70 backdrop-blur-lg shadow-xl flex flex-col items-center justify-center transition-all"
             >
               <Icon className="h-12 w-12 text-cyan-300 mb-4" />
-              <h4 className="text-4xl md:text-5xl font-bold text-white">{number}</h4>
-              <p className="text-slate-300 text-center mt-2 text-lg md:text-xl">{label}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Tech Stack Section */}
-        <motion.div className="flex flex-wrap justify-center gap-6 mt-12">
-          {techStack.map(({ name, icon: Icon }, i) => (
-            <motion.div
-              key={name}
-              whileHover={{
-                scale: 1.15,
-                rotateY: 20,
-                rotateX: 10,
-                y: -5,
-                boxShadow: "0 20px 50px rgba(139,92,246,0.5)",
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1, duration: 0.6, type: "spring" }}
-              className="flex items-center gap-4 px-8 py-5 rounded-3xl border border-cyan-300/20 backdrop-blur-lg bg-slate-800/50 cursor-pointer transition-all"
-            >
-              <Icon className="text-3xl md:text-4xl text-cyan-300" />
-              <span className="text-white font- text-lg md:text-xl">{name}</span>
+              <h4 className="text-4xl md:text-5xl font-bold text-white">
+                {number}
+              </h4>
+              <p className="text-slate-300 text-center mt-2 text-lg md:text-xl">
+                {label}
+              </p>
             </motion.div>
           ))}
         </motion.div>
@@ -189,7 +195,6 @@ export default function Hero() {
         >
           <ChevronDown size={40} className="mx-auto" />
         </motion.button>
-
       </div>
     </section>
   );

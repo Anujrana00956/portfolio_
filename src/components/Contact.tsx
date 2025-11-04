@@ -27,9 +27,9 @@ import {
 } from "lucide-react";
 
 const profile = {
-  email: { address: "mehtaabhishek.dev@gmail.com" },
-  phone: { number: "+91 XXXXX XXXXX" },
-  location: { name: "Ludhiana, Punjab, India" },
+  email: { address: "anujrana2392001@gmail.com" },
+  phone: { number: "+91 8219935846" },
+  location: { name: "Mohali, Punjab, India" },
 };
 
 export default function Contact() {
