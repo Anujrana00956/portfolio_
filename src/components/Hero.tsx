@@ -124,7 +124,17 @@ export default function Hero() {
           transition={{ delay: 0.6, duration: 0.8 }}
         >
           <Button
-            onClick={scrollToNext}
+            onClick={() => {
+              const contactSection = document.getElementById("contact");
+              if (contactSection) {
+                const yOffset = -80; // adjust offset (e.g., header height)
+                const y =
+                  contactSection.getBoundingClientRect().top +
+                  window.pageYOffset +
+                  yOffset;
+                window.scrollTo({ top: y, behavior: "smooth" });
+              }
+            }}
             className="bg-cyan-600/80 hover:bg-cyan-500 px-10 py-5 rounded-full text-lg md:text-xl font-semibold shadow-lg transition-all duration-300"
           >
             <Mail className="mr-2 h-5 w-5 animate-bounce" /> Let’s Connect

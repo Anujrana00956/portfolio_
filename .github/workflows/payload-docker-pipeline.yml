@@ -1,31 +1,52 @@
-name: Build & Push Docker Image
+name: CI/CD Pipeline
 
+# Trigger the pipeline on push or PR to main branch
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
-  build-and-push:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: ⬇️ Checkout code
+      # Step 1: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: 🔧 Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: 🔐 Log in to Docker Hub
-        uses: docker/login-action@v3
+      # Step 2: Set up Node.js (or your project environment)
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          node-version: 20
 
-      - name: 🛠️ Build and Push Docker Image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: |
-            abhishekmehtadev/payload-of-me:latest
-            abhishekmehtadev/payload-of-me:${{ github.sha }}
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run linter
+      - name: Lint code
+        run: npm run lint
+
+      # Step 5: Run tests
+      - name: Run tests
+        run: npm test
+
+      # Step 6: Build project
+      - name: Build project
+        run: npm run build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy
+        run: |
+          echo "Deploying to production..."
+          # Example deployment commands:
+          # ssh user@server "cd /app && git pull && npm install && pm2 restart app"

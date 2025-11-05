@@ -7,7 +7,16 @@ import {
   useScroll,
   useMotionValueEvent,
 } from "framer-motion";
-import { Menu, X, Home, User, Code, Briefcase, FolderOpen, Mail } from "lucide-react";
+import {
+  Menu,
+  X,
+  Home,
+  User,
+  Code,
+  Briefcase,
+  FolderOpen,
+  Mail,
+} from "lucide-react";
 import Link from "next/link";
 import clsx from "clsx";
 import NavbarLogo from "./NavbarLogo";
@@ -84,7 +93,8 @@ export default function Navbar() {
 
     if (target) {
       const rect = target.getBoundingClientRect();
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
       const navbar = document.querySelector("header");
       const navbarHeight = navbar ? navbar.clientHeight : 0;
       const targetPosition = rect.top + scrollTop - navbarHeight - 10;
@@ -109,13 +119,14 @@ export default function Navbar() {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <NavbarLogo className ="w-10 h-10" />
+            <NavbarLogo className="w-10 h-10" />
           </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center space-x-4">
             {navLinks.map((item) => {
-              const isActive = activeSection.toLowerCase() === item.label.toLowerCase();
+              const isActive =
+                activeSection.toLowerCase() === item.label.toLowerCase();
               return (
                 <a
                   key={item.href}
@@ -155,7 +166,8 @@ export default function Navbar() {
               transition={{ duration: 0.3 }}
             >
               {navLinks.map((item) => {
-                const isActive = activeSection.toLowerCase() === item.label.toLowerCase();
+                const isActive =
+                  activeSection.toLowerCase() === item.label.toLowerCase();
                 return (
                   <a
                     key={item.href}

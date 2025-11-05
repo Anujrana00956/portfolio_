@@ -75,7 +75,7 @@ export default function About() {
   ];
 
   return (
-    <section className="relative py-20 overflow-hidden bg-gray-900 text-gray-100">
+    <section className="relative py-20 overflow-hidden bg-gray-900 text-gray-100" id="about">
       {/* Background animated blobs */}
       <div className="absolute inset-0">
         <motion.div
