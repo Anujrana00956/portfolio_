@@ -33,7 +33,7 @@ const profile = {
 };
 
 export default function Contact() {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.15 });
 
   const [formData, setFormData] = useState({

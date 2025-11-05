@@ -5,6 +5,7 @@ import { TbBrandReactNative } from "react-icons/tb";
 import { useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { GraduationCap, Code, Target, Database, Smartphone, Figma } from "lucide-react";
+import Image from "next/image";
 
 export default function About() {
   const ref = useRef(null);
@@ -116,9 +117,11 @@ export default function About() {
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <img
+          <Image
             src="/assets/about_desktop.jpg"
             alt="Anuj Rana"
+            width={240}
+            height={240}
             className="w-48 h-48 md:w-60 md:h-60 rounded-full object-cover shadow-2xl border-4 border-blue-600 hover:scale-105 transition-transform duration-500"
           />
         </motion.div>
@@ -133,7 +136,7 @@ export default function About() {
           {/* Left Description */}
           <motion.div className="space-y-6" variants={fadeInUp}>
             <motion.h3 className="text-2xl md:text-3xl font-semibold text-white">
-              👋 Hi, I'm Anuj Rana
+              👋 Hi, I&apos;m Anuj Rana
             </motion.h3>
             <motion.p className="text-lg leading-relaxed text-gray-200">
               I am a passionate Flutter Developer with over 2 years of experience designing, developing, and deploying high-performance mobile applications. I specialize in Flutter & Dart, with hands-on experience integrating Firebase and RESTful APIs. My focus on clean UI/UX and responsive design ensures seamless user experiences and improved app performance.

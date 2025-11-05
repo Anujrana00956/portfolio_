@@ -7,7 +7,7 @@ import {
   useScroll,
   useMotionValueEvent,
 } from "framer-motion";
-import { Menu, X, Home, User, Code, Briefcase, FolderOpen, Mail, Award } from "lucide-react";
+import { Menu, X, Home, User, Code, Briefcase, FolderOpen, Mail } from "lucide-react";
 import Link from "next/link";
 import clsx from "clsx";
 import NavbarLogo from "./NavbarLogo";

@@ -1,6 +1,6 @@
 "use client";
 
-import { animate, motion, Variants } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { useEffect, useState } from "react";
 import {
   Github,
@@ -60,6 +60,7 @@ export default function Footer() {
     { icon: Mail, href: `mailto:${profile.email.address}`, label: "Email" },
   ];
 
+  
   const contactInfo = [
     { icon: Mail, text: profile.email.address, href: `mailto:${profile.email.address}` },
     { icon: Phone, text: profile.phone.number, href: `tel:${profile.phone.number}` },
@@ -71,7 +72,7 @@ export default function Footer() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
   };
 
-  const heartBeat = {
+  const heartBeat: Variants = {
     animate: { scale: [1, 1.2, 1], transition: { duration: 1.5, repeat: Infinity, ease: "easeInOut" } },
   };
 

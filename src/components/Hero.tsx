@@ -12,14 +12,6 @@ import {
   Layers,
   GitBranch,
 } from "lucide-react";
-import {
-  SiFlutter,
-  SiDart,
-  SiFirebase,
-  SiAndroid,
-  SiIos,
-  SiGit,
-} from "react-icons/si";
 
 export default function Hero() {
   const titles = useMemo(
@@ -33,7 +25,7 @@ export default function Hero() {
       setCurrentTitle((prev) => (prev + 1) % titles.length);
     }, 3500);
     return () => clearInterval(interval);
-  }, []);
+  }, [titles.length]);
 
   const scrollToNext = () =>
     document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
@@ -43,15 +35,6 @@ export default function Hero() {
     { number: "2+", label: "Years Experience", icon: Award },
     { number: "8+", label: "Tech Tools Used", icon: Layers },
     { number: "30+", label: "GitHub Contributions", icon: GitBranch },
-  ];
-
-  const techStack = [
-    { name: "Flutter", icon: SiFlutter },
-    { name: "Dart", icon: SiDart },
-    { name: "Firebase", icon: SiFirebase },
-    { name: "Android", icon: SiAndroid },
-    { name: "iOS", icon: SiIos },
-    { name: "Git", icon: SiGit },
   ];
 
   return (
