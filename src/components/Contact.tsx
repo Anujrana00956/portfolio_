@@ -109,13 +109,13 @@ export default function Contact() {
   const socialLinks = [
     {
       icon: Github,
-      href: "https://github.com/abhishek-mehta-dev",
+      href: "https://github.com/Anujrana00956",
       label: "GitHub",
       gradient: "from-gray-700 to-gray-900",
     },
     {
       icon: Linkedin,
-      href: "https://www.linkedin.com/in/abhishek-mehta-0724ab256/",
+      href: "https://www.linkedin.com/in/anujrana0754/",
       label: "LinkedIn",
       gradient: "from-blue-500 to-blue-700",
     },
@@ -158,7 +158,9 @@ export default function Contact() {
         [
           { transform: "translateY(0)", opacity: 1 },
           {
-            transform: `translateY(-${window.innerHeight}px) rotate(${Math.random() * 360}deg)`,
+            transform: `translateY(-${window.innerHeight}px) rotate(${
+              Math.random() * 360
+            }deg)`,
             opacity: 0,
           },
         ],

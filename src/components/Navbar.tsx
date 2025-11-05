@@ -18,7 +18,7 @@ const navLinks = [
   { label: "Skills", href: "#skills", icon: Code },
   { label: "Experience", href: "#experience", icon: Briefcase },
   { label: "Projects", href: "#projects", icon: FolderOpen },
-  { label: "Certifications", href: "#certifications", icon: Award },
+  // { label: "Certifications", href: "#certifications", icon: Award },
   { label: "Contact", href: "#contact", icon: Mail },
 ];
 
