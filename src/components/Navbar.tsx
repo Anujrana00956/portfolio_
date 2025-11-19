@@ -27,7 +27,6 @@ const navLinks = [
   { label: "Skills", href: "#skills", icon: Code },
   { label: "Experience", href: "#experience", icon: Briefcase },
   { label: "Projects", href: "#projects", icon: FolderOpen },
-  // { label: "Certifications", href: "#certifications", icon: Award },
   { label: "Contact", href: "#contact", icon: Mail },
 ];
 
@@ -35,15 +34,15 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("Home");
-  const { scrollY } = useScroll();
   const [isScrolling, setIsScrolling] = useState(false);
+  const { scrollY } = useScroll();
 
-  // Toggle navbar background on scroll
+  // Change navbar background on scroll
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 20);
   });
 
-  // Detect active section
+  // Detect active section while scrolling
   useEffect(() => {
     const handleScroll = () => {
       if (isScrolling) return;
@@ -52,12 +51,13 @@ export default function Navbar() {
       let currentSection = "Home";
 
       for (const section of sections) {
-        if (section === "") continue;
+        if (!section) continue;
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
           if (rect.top <= 100 && rect.bottom >= 100) {
-            currentSection = section.charAt(0).toUpperCase() + section.slice(1);
+            currentSection =
+              section.charAt(0).toUpperCase() + section.slice(1);
             break;
           }
         }
@@ -84,7 +84,7 @@ export default function Navbar() {
     if (href === "#" || href === "") {
       window.scrollTo({ top: 0, behavior: "smooth" });
       setActiveSection("Home");
-      setIsScrolling(false);
+      setTimeout(() => setIsScrolling(false), 500);
       return;
     }
 
@@ -97,13 +97,21 @@ export default function Navbar() {
         window.pageYOffset || document.documentElement.scrollTop;
       const navbar = document.querySelector("header");
       const navbarHeight = navbar ? navbar.clientHeight : 0;
+
       const targetPosition = rect.top + scrollTop - navbarHeight - 10;
 
-      window.scrollTo({ top: Math.max(0, targetPosition), behavior: "smooth" });
-      setActiveSection(sectionId.charAt(0).toUpperCase() + sectionId.slice(1));
+      window.scrollTo({
+        top: Math.max(0, targetPosition),
+        behavior: "smooth",
+      });
+
+      setActiveSection(
+        sectionId.charAt(0).toUpperCase() + sectionId.slice(1)
+      );
     }
 
-    setIsScrolling(false);
+    // Fix: wait for scroll to finish
+    setTimeout(() => setIsScrolling(false), 600);
   };
 
   return (
@@ -159,7 +167,7 @@ export default function Navbar() {
         <AnimatePresence>
           {isOpen && (
             <motion.nav
-              className="md:hidden flex flex-col space-y-2 pb-4"
+              className="md:hidden flex flex-col space-y-2 pb-4 pointer-events-auto"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
