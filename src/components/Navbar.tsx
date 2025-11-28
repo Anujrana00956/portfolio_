@@ -42,7 +42,7 @@ export default function Navbar() {
     setScrolled(latest > 20);
   });
 
-  // Detect active section while scrolling
+  // Detect active section
   useEffect(() => {
     const handleScroll = () => {
       if (isScrolling) return;
@@ -70,9 +70,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isScrolling]);
 
-  // Smooth scroll
+  // Smooth scroll handler (patched for Android)
   const handleSmoothScroll = (
-    e: React.MouseEvent,
+    e: any,
     href: string,
     closeMenu = false
   ) => {
@@ -84,7 +84,7 @@ export default function Navbar() {
     if (href === "#" || href === "") {
       window.scrollTo({ top: 0, behavior: "smooth" });
       setActiveSection("Home");
-      setTimeout(() => setIsScrolling(false), 500);
+      setTimeout(() => setIsScrolling(false), 400);
       return;
     }
 
@@ -110,8 +110,7 @@ export default function Navbar() {
       );
     }
 
-    // Fix: wait for scroll to finish
-    setTimeout(() => setIsScrolling(false), 600);
+    setTimeout(() => setIsScrolling(false), 500);
   };
 
   return (
@@ -138,14 +137,16 @@ export default function Navbar() {
               return (
                 <a
                   key={item.href}
+                  role="button"
                   href={item.href}
-                  onClick={(e) => handleSmoothScroll(e, item.href)}
                   className={clsx(
-                    "flex items-center px-4 py-2 rounded-full font-medium transition-all duration-300",
+                    "cursor-pointer flex items-center px-4 py-2 rounded-full font-medium transition-all duration-300",
                     "text-slate-200 hover:text-white hover:bg-cyan-600/30 hover:scale-105",
                     isActive &&
                       "bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white shadow-xl transform scale-105"
                   )}
+                  onClick={(e) => handleSmoothScroll(e, item.href)}
+                  onTouchStart={(e) => handleSmoothScroll(e, item.href)}
                 >
                   <item.icon className="h-4 w-4 mr-2" />
                   {item.label}
@@ -168,10 +169,10 @@ export default function Navbar() {
           {isOpen && (
             <motion.nav
               className="md:hidden flex flex-col space-y-2 pb-4 pointer-events-auto"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.25 }}
             >
               {navLinks.map((item) => {
                 const isActive =
@@ -179,14 +180,18 @@ export default function Navbar() {
                 return (
                   <a
                     key={item.href}
+                    role="button"
                     href={item.href}
-                    onClick={(e) => handleSmoothScroll(e, item.href, true)}
                     className={clsx(
-                      "flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-300",
+                      "cursor-pointer flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-300",
                       "text-slate-200 hover:text-white hover:bg-cyan-600/20 hover:scale-105",
                       isActive &&
                         "bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white shadow-xl transform scale-105"
                     )}
+                    onClick={(e) => handleSmoothScroll(e, item.href, true)}
+                    onTouchStart={(e) =>
+                      handleSmoothScroll(e, item.href, true)
+                    }
                   >
                     <item.icon className="h-5 w-5 mr-2" />
                     {item.label}
