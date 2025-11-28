@@ -71,47 +71,24 @@ export default function Navbar() {
   }, [isScrolling]);
 
   // Smooth scroll handler (patched for Android)
-  const handleSmoothScroll = (
-    e: any,
-    href: string,
-    closeMenu = false
-  ) => {
-    e.preventDefault();
-    if (closeMenu) setIsOpen(false);
+ // Smooth scroll handler (supports both touch + click)
+const handleSmoothScroll = (
+  e: React.MouseEvent<HTMLAnchorElement> | React.TouchEvent<HTMLAnchorElement>,
+  href: string,
+  closeMenu: boolean = false
+) => {
+  e.preventDefault();
 
-    setIsScrolling(true);
+  if (closeMenu) setIsOpen(false);
 
-    if (href === "#" || href === "") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      setActiveSection("Home");
-      setTimeout(() => setIsScrolling(false), 400);
-      return;
-    }
-
-    const sectionId = href.startsWith("#") ? href.substring(1) : href;
-    const target = document.getElementById(sectionId);
-
-    if (target) {
-      const rect = target.getBoundingClientRect();
-      const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
-      const navbar = document.querySelector("header");
-      const navbarHeight = navbar ? navbar.clientHeight : 0;
-
-      const targetPosition = rect.top + scrollTop - navbarHeight - 10;
-
-      window.scrollTo({
-        top: Math.max(0, targetPosition),
-        behavior: "smooth",
-      });
-
-      setActiveSection(
-        sectionId.charAt(0).toUpperCase() + sectionId.slice(1)
-      );
-    }
-
-    setTimeout(() => setIsScrolling(false), 500);
-  };
+  const element = document.querySelector(href);
+  if (element) {
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+};
 
   return (
     <motion.header
