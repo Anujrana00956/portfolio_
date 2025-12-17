@@ -24,7 +24,7 @@ export default function Experience() {
   const experiences = [
     {
       title: "Flutter Developer",
-      company: "Nessifi Tech. Pvt. Ltd.",
+      company: "Nessfi Tech. Pvt. Ltd.",
       location: "Mohali, Punjab",
       period: "2024 — Present",
       description:

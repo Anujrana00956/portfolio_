@@ -63,7 +63,7 @@ export default function Contact() {
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!ref.current) return;
-      const rect = (ref.current as HTMLElement).getBoundingClientRect();
+      const rect = ref.current.getBoundingClientRect();
       const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
       const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
       mouseX.set(x);
@@ -121,15 +121,19 @@ export default function Contact() {
     },
   ];
 
+  // Improved validation
   const validateForm = () => {
     if (!formData.firstName || !formData.email || !formData.message) {
       setError("Please fill all required fields.");
       return false;
     }
-    if (!/\S+@\S+\.\S+/.test(formData.email)) {
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
       setError("Invalid email address.");
       return false;
     }
+
     setError("");
     return true;
   };
@@ -139,48 +143,76 @@ export default function Contact() {
     if (!validateForm()) return;
 
     setIsSubmitting(true);
-    await new Promise((r) => setTimeout(r, 2000)); // simulate send
-    setIsSubmitting(false);
-    setIsSubmitted(true);
 
-    // Confetti burst animation (temporary)
-    const confetti = document.createElement("div");
-    confetti.className =
-      "fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-50";
-    for (let i = 0; i < 20; i++) {
-      const piece = document.createElement("div");
-      piece.className = "absolute w-2 h-2 rounded-full";
-      piece.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
-      piece.style.top = `${window.innerHeight}px`;
-      piece.style.left = `${Math.random() * window.innerWidth}px`;
-      confetti.appendChild(piece);
-      piece.animate(
-        [
-          { transform: "translateY(0)", opacity: 1 },
-          {
-            transform: `translateY(-${window.innerHeight}px) rotate(${
-              Math.random() * 360
-            }deg)`,
-            opacity: 0,
-          },
-        ],
-        { duration: 1500 + Math.random() * 1000, fill: "forwards" }
-      );
-    }
-    document.body.appendChild(confetti);
-    setTimeout(() => confetti.remove(), 2000);
+    try {
+      const data = new FormData();
+      data.append("access_key", "86b0a064-8ce7-47d2-8b06-4a5b1e345379"); // Web3Forms key
+      data.append("name", formData.firstName + " " + formData.lastName);
+      data.append("email", formData.email);
+      data.append("subject", formData.subject);
+      data.append("message", formData.message);
 
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        subject: "",
-        message: "",
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: data,
       });
-    }, 3000);
+
+      const resultData = await response.json();
+
+      if (resultData.success) {
+        setIsSubmitted(true);
+
+        // Confetti animation
+        const confetti = document.createElement("div");
+        confetti.className =
+          "fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-50";
+        for (let i = 0; i < 20; i++) {
+          const piece = document.createElement("div");
+          piece.className = "absolute w-2 h-2 rounded-full";
+          piece.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+          piece.style.top = `${window.innerHeight}px`;
+          piece.style.left = `${Math.random() * window.innerWidth}px`;
+          confetti.appendChild(piece);
+          piece.animate(
+            [
+              { transform: "translateY(0)", opacity: 1 },
+              {
+                transform: `translateY(-${window.innerHeight}px) rotate(${
+                  Math.random() * 360
+                }deg)`,
+                opacity: 0,
+              },
+            ],
+            { duration: 1500 + Math.random() * 1000, fill: "forwards" }
+          );
+        }
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 2000);
+
+        // Reset form
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        setError("Failed to send message. Please try again.");
+      }
+    } catch (err) {
+      setError("An error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setError("");
+      }, 5000);
+    }
   };
+
+  // Real-time email validation
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
 
   return (
     <section
@@ -188,12 +220,10 @@ export default function Contact() {
       id="contact"
       className="relative py-28 bg-slate-950 overflow-hidden"
     >
-      {/* Animated gradient background */}
+      {/* Background and sparkles */}
       <motion.div
         className="absolute inset-0"
-        animate={{
-          backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
-        }}
+        animate={{ backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"] }}
         transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
         style={{
           background:
@@ -203,7 +233,6 @@ export default function Contact() {
         }}
       />
 
-      {/* Floating sparkle particles */}
       {Array.from({ length: 14 }).map((_, i) => (
         <motion.div
           key={i}
@@ -214,11 +243,7 @@ export default function Contact() {
             top: `${Math.random() * 100}%`,
             left: `${Math.random() * 100}%`,
           }}
-          animate={{
-            y: [0, -30, 0],
-            x: [0, 20, 0],
-            opacity: [0.3, 0.8, 0.3],
-          }}
+          animate={{ y: [0, -30, 0], x: [0, 20, 0], opacity: [0.3, 0.8, 0.3] }}
           transition={{
             duration: 8 + Math.random() * 5,
             repeat: Infinity,
@@ -229,6 +254,7 @@ export default function Contact() {
       ))}
 
       <div className="container mx-auto px-6 relative z-10">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -246,7 +272,7 @@ export default function Contact() {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-14">
-          {/* Contact Info Section */}
+          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -259,11 +285,7 @@ export default function Contact() {
                 href={info.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{
-                  scale: 1.05,
-                  rotateY: 5,
-                  boxShadow: "0 0 40px rgba(59,130,246,0.3)",
-                }}
+                whileHover={{ scale: 1.05, rotateY: 5 }}
                 className="block"
               >
                 <div className="relative p-6 rounded-2xl bg-slate-900/60 border border-slate-700/60 backdrop-blur-lg overflow-hidden hover:border-slate-500/60">
@@ -308,6 +330,7 @@ export default function Contact() {
               </div>
             </div>
 
+            {/* Quick Response */}
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="p-6 bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-2xl backdrop-blur-xl"
@@ -349,7 +372,7 @@ export default function Contact() {
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* First/Last name */}
+                {/* First/Last Name */}
                 <div className="grid grid-cols-2 gap-4">
                   {[
                     { name: "firstName", label: "First Name" },
@@ -447,13 +470,13 @@ export default function Contact() {
                   </motion.div>
                 )}
 
-                {/* Button */}
+                {/* Submit Button */}
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
-                  disabled={isSubmitting || isSubmitted}
+                  disabled={isSubmitting || isSubmitted || !isEmailValid}
                   type="submit"
-                  className="relative w-full py-4 rounded-xl text-white font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-lg overflow-hidden"
+                  className="relative w-full py-4 rounded-xl text-white font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-lg overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-pink-500 via-blue-500 to-purple-500 opacity-0"

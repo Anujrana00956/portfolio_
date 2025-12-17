@@ -69,7 +69,7 @@ export default function Hero() {
         ))}
       </motion.div>
 
-      <div className="relative z-10 text-center max-w-5xl flex flex-col gap-10 min-h-[80vh] justify-center">
+      <div className="relative z-10 text-center max-w-5xl flex flex-col gap-10 min-h-[80vh] justify-center" id ='home'>
         {/* Greeting */}
         <motion.div
           className="inline-block px-8 py-4 bg-cyan-600/20 rounded-full text-cyan-100 font-semibold text-lg md:text-xl"

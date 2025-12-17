@@ -22,7 +22,7 @@ import clsx from "clsx";
 import NavbarLogo from "./NavbarLogo";
 
 const navLinks = [
-  { label: "Home", href: "#", icon: Home },
+  { label: "Home", href: "#home", icon: Home },
   { label: "About", href: "#about", icon: User },
   { label: "Skills", href: "#skills", icon: Code },
   { label: "Experience", href: "#experience", icon: Briefcase },
@@ -33,62 +33,56 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("Home");
-  const [isScrolling, setIsScrolling] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
   const { scrollY } = useScroll();
 
-  // Change navbar background on scroll
+  // Navbar background change on scroll
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 20);
   });
 
-  // Detect active section
+  // Active section detection
   useEffect(() => {
     const handleScroll = () => {
-      if (isScrolling) return;
+      for (const link of navLinks) {
+        const id = link.href.replace("#", "");
+        const el = document.getElementById(id);
+        if (!el) continue;
 
-      const sections = navLinks.map((link) => link.href.replace("#", ""));
-      let currentSection = "Home";
-
-      for (const section of sections) {
-        if (!section) continue;
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            currentSection =
-              section.charAt(0).toUpperCase() + section.slice(1);
-            break;
-          }
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= 120 && rect.bottom >= 120) {
+          setActiveSection(id);
+          break;
         }
       }
-
-      setActiveSection(currentSection);
     };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isScrolling]);
+  }, []);
 
-  // Smooth scroll handler (patched for Android)
- // Smooth scroll handler (supports both touch + click)
-const handleSmoothScroll = (
-  e: React.MouseEvent<HTMLAnchorElement> | React.TouchEvent<HTMLAnchorElement>,
-  href: string,
-  closeMenu: boolean = false
-) => {
-  e.preventDefault();
+  // Smooth scroll handler (safe for mobile)
+  const handleSmoothScroll = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+    closeMenu = false
+  ) => {
+    e.preventDefault();
+    if (closeMenu) setIsOpen(false);
 
-  if (closeMenu) setIsOpen(false);
+    const id = href.replace("#", "");
+    const el = document.getElementById(id);
+    if (!el) return;
 
-  const element = document.querySelector(href);
-  if (element) {
-    element.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }
-};
+    const navbarHeight = 80;
+    const y =
+      el.getBoundingClientRect().top +
+      window.pageYOffset -
+      navbarHeight;
+
+    window.scrollTo({ top: y, behavior: "smooth" });
+  };
 
   return (
     <motion.header
@@ -99,31 +93,28 @@ const handleSmoothScroll = (
           : "backdrop-blur-md bg-slate-900/60"
       )}
     >
-      <div className="container mx-auto px-4 lg:px-8 relative">
+      <div className="container mx-auto px-4 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <NavbarLogo className="w-10 h-10" />
+          <Link href="/" className="flex items-center">
+            <NavbarLogo />
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center space-x-4">
+          {/* Desktop Nav (Laptops+) */}
+          <nav className="hidden lg:flex items-center space-x-4">
             {navLinks.map((item) => {
-              const isActive =
-                activeSection.toLowerCase() === item.label.toLowerCase();
+              const isActive = activeSection === item.href.replace("#", "");
               return (
                 <a
                   key={item.href}
-                  role="button"
                   href={item.href}
+                  onClick={(e) => handleSmoothScroll(e, item.href)}
                   className={clsx(
-                    "cursor-pointer flex items-center px-4 py-2 rounded-full font-medium transition-all duration-300",
+                    "flex items-center px-4 py-2 rounded-full font-medium transition-all duration-300",
                     "text-slate-200 hover:text-white hover:bg-cyan-600/30 hover:scale-105",
                     isActive &&
-                      "bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white shadow-xl transform scale-105"
+                      "bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white shadow-xl scale-105"
                   )}
-                  onClick={(e) => handleSmoothScroll(e, item.href)}
-                  onTouchStart={(e) => handleSmoothScroll(e, item.href)}
                 >
                   <item.icon className="h-4 w-4 mr-2" />
                   {item.label}
@@ -132,20 +123,20 @@ const handleSmoothScroll = (
             })}
           </nav>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile / Tablet Menu Button */}
           <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-full text-slate-100 hover:text-white hover:bg-cyan-400/20 transition-colors duration-300"
+            onClick={() => setIsOpen((v) => !v)}
+            className="lg:hidden p-3 rounded-full text-slate-100 hover:bg-cyan-400/20"
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
-        {/* Mobile Nav */}
+        {/* Mobile / Tablet Nav */}
         <AnimatePresence>
           {isOpen && (
             <motion.nav
-              className="md:hidden flex flex-col space-y-2 pb-4 pointer-events-auto"
+              className="lg:hidden flex flex-col space-y-2 pb-4"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
@@ -153,22 +144,20 @@ const handleSmoothScroll = (
             >
               {navLinks.map((item) => {
                 const isActive =
-                  activeSection.toLowerCase() === item.label.toLowerCase();
+                  activeSection === item.href.replace("#", "");
                 return (
                   <a
                     key={item.href}
-                    role="button"
                     href={item.href}
-                    className={clsx(
-                      "cursor-pointer flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-300",
-                      "text-slate-200 hover:text-white hover:bg-cyan-600/20 hover:scale-105",
-                      isActive &&
-                        "bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white shadow-xl transform scale-105"
-                    )}
-                    onClick={(e) => handleSmoothScroll(e, item.href, true)}
-                    onTouchStart={(e) =>
+                    onClick={(e) =>
                       handleSmoothScroll(e, item.href, true)
                     }
+                    className={clsx(
+                      "flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-300",
+                      "text-slate-200 hover:text-white hover:bg-cyan-600/20",
+                      isActive &&
+                        "bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white shadow-xl"
+                    )}
                   >
                     <item.icon className="h-5 w-5 mr-2" />
                     {item.label}
