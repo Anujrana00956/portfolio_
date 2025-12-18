@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Code2 } from "lucide-react";
 
-const NavbarLogo = ({ className }: { className?: string }) => {
+const NavbarLogo = () => {
   return (
     <motion.div
       className="flex items-center gap-2 sm:gap-3 cursor-pointer group relative"

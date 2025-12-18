@@ -200,7 +200,7 @@ export default function Contact() {
       } else {
         setError("Failed to send message. Please try again.");
       }
-    } catch (err) {
+    } catch {
       setError("An error occurred. Please try again.");
     } finally {
       setIsSubmitting(false);
