@@ -123,7 +123,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="relative py-24 bg-gradient-to-br from-gray-950 via-blue-950 to-indigo-950 text-white overflow-hidden"
+      className="relative py-24 bg-slate-950 text-white overflow-hidden transition-colors duration-300"
     >
       {/* Floating background lights */}
       <motion.div
@@ -145,7 +145,7 @@ export default function Skills() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
         >
           <motion.h2
-            className="text-5xl font-extrabold mb-4 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 bg-clip-text text-transparent"
+            className="text-5xl font-extrabold mb-4 bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 dark:from-cyan-400 dark:via-blue-400 dark:to-purple-500 bg-clip-text text-transparent"
             animate={{
               backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
             }}
@@ -153,7 +153,7 @@ export default function Skills() {
           >
             Technical Skills & Expertise
           </motion.h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Combining design intuition with robust engineering — building apps
             that are as elegant as they are powerful.
           </p>
@@ -164,7 +164,7 @@ export default function Skills() {
           {categories.map((cat, i) => (
             <motion.div
               key={i}
-              className={`relative rounded-3xl p-[2px] bg-gradient-to-br ${cat.gradient} overflow-hidden group`}
+              className={`relative rounded-3xl p-[2px] bg-gradient-to-br ${cat.gradient} overflow-hidden group transition-all duration-500`}
               onMouseMove={(e) => handleMouseMove(e, i)}
               onMouseLeave={() => setHovered(null)}
               animate={{
@@ -220,7 +220,7 @@ export default function Skills() {
                     <cat.icon className="text-3xl text-white relative z-10" />
                   </motion.div>
                   <div>
-                    <h3 className="text-xl font-semibold">{cat.title}</h3>
+                    <h3 className="text-xl font-semibold text-white">{cat.title}</h3>
                     <p className="text-gray-400 text-sm mt-1">
                       {cat.description}
                     </p>

@@ -121,18 +121,12 @@
   }
 }
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0) rotate(0) scale(1);
-    opacity: 0.6;
-  }
-  33% {
-    transform: translateY(-15px) rotate(120deg) scale(1.1);
-    opacity: 0.8;
-  }
-  66% {
-    transform: translateY(-5px) rotate(240deg) scale(0.9);
-    opacity: 0.7;
-  }
+@keyframes smoke {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+  50% { transform: translate(-2%, -2%) scale(1.1); opacity: 0.4; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+}
+
+.animate-smoke {
+  animation: smoke 10s ease-in-out infinite;
 }

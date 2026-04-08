@@ -75,16 +75,16 @@ export default function About() {
   ];
 
   return (
-    <section className="relative py-20 overflow-hidden bg-gray-900 text-gray-100" id="about">
+    <section className="relative py-20 overflow-hidden bg-slate-950 text-gray-100 transition-colors duration-300" id="about">
       {/* Background animated blobs */}
       <div className="absolute inset-0">
         <motion.div
-          className="absolute top-[-100px] left-[-100px] w-72 h-72 bg-gradient-to-r from-blue-700 via-purple-800 to-pink-700 rounded-full opacity-30 blur-3xl"
+          className="absolute top-[-100px] left-[-100px] w-72 h-72 bg-gradient-to-r from-blue-700 dark:from-blue-700 via-purple-800 dark:via-purple-800 to-pink-700 dark:to-pink-700 rounded-full opacity-20 blur-3xl"
           animate={{ x: [0, 300, 0], y: [0, 200, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute bottom-[-120px] right-[-80px] w-96 h-96 bg-gradient-to-r from-purple-800 via-pink-700 to-yellow-600 rounded-full opacity-25 blur-2xl"
+          className="absolute bottom-[-120px] right-[-80px] w-96 h-96 bg-gradient-to-r from-purple-800 dark:from-purple-800 via-pink-700 dark:via-pink-700 to-yellow-600 dark:to-yellow-600 rounded-full opacity-15 blur-2xl"
           animate={{ x: [0, -300, 0], y: [0, -150, 0] }}
           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -135,13 +135,25 @@ export default function About() {
         >
           {/* Left Description */}
           <motion.div className="space-y-6" variants={fadeInUp}>
-            <motion.h3 className="text-2xl md:text-3xl font-semibold text-white">
+            <motion.h3 
+              className="text-2xl md:text-3xl font-semibold text-white"
+              whileInView={{ x: [ -20, 0 ], opacity: [ 0, 1 ] }}
+              transition={{ duration: 0.8 }}
+            >
               👋 Hi, I&apos;m Anuj Rana
             </motion.h3>
-            <motion.p className="text-lg leading-relaxed text-gray-200">
+            <motion.p 
+              className="text-lg leading-relaxed text-gray-300"
+              whileInView={{ x: [ -30, 0 ], opacity: [ 0, 1 ] }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
               I am a passionate Flutter Developer with over 2 years of experience designing, developing, and deploying high-performance mobile applications. I specialize in Flutter & Dart, with hands-on experience integrating Firebase and RESTful APIs. My focus on clean UI/UX and responsive design ensures seamless user experiences and improved app performance.
             </motion.p>
-            <motion.p className="text-lg leading-relaxed text-gray-200">
+            <motion.p 
+              className="text-lg leading-relaxed text-gray-300"
+              whileInView={{ x: [ -40, 0 ], opacity: [ 0, 1 ] }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
               🌱 I continuously explore new technologies within the mobile ecosystem, thrive in innovative environments, and enjoy collaborating with teams to deliver impactful mobile solutions. 📬 I’m open to networking, sharing knowledge, and discovering exciting opportunities in mobile app development.
             </motion.p>
 
@@ -155,7 +167,7 @@ export default function About() {
                     rotateY: 20,
                     rotateX: 10,
                     y: -5,
-                    boxShadow: "0 20px 50px rgba(139,92,246,0.5)",
+                    boxShadow: "0 20px 50px rgba(139,92,246,0.3)",
                   }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -184,7 +196,7 @@ export default function About() {
                   transition: { duration: 0.3 },
                 }}
               >
-                <Card className={`border-l-4 ${card.border} bg-gray-800/70 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all`}>
+                <Card className={`border-l-4 ${card.border} bg-gray-800/70 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all border-y-0 border-r-0 rounded-none`}>
                   <CardContent className="p-6">
                     <div className="flex items-center mb-3 gap-3">
                       <motion.div

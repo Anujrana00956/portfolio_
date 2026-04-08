@@ -88,9 +88,9 @@ export default function Navbar() {
     <motion.header
       className={clsx(
         "fixed top-0 left-0 w-full z-50 transition-all duration-300",
-        scrolled
-          ? "backdrop-blur-xl bg-slate-900/80 shadow-lg border-b border-cyan-500/20"
-          : "backdrop-blur-md bg-slate-900/60"
+       scrolled
+  ? "backdrop-blur-xl bg-slate-900/80 shadow-lg border-b border-white/10"
+  : "backdrop-blur-md bg-transparent"
       )}
     >
       <div className="container mx-auto px-4 lg:px-8">
@@ -111,7 +111,7 @@ export default function Navbar() {
                   onClick={(e) => handleSmoothScroll(e, item.href)}
                   className={clsx(
                     "flex items-center px-4 py-2 rounded-full font-medium transition-all duration-300",
-                    "text-slate-200 hover:text-white hover:bg-cyan-600/30 hover:scale-105",
+                    "text-slate-300 hover:text-white hover:bg-white/10 hover:scale-105",
                     isActive &&
                       "bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white shadow-xl scale-105"
                   )}
@@ -124,12 +124,14 @@ export default function Navbar() {
           </nav>
 
           {/* Mobile / Tablet Menu Button */}
-          <button
-            onClick={() => setIsOpen((v) => !v)}
-            className="lg:hidden p-3 rounded-full text-slate-100 hover:bg-cyan-400/20"
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          <div className="flex items-center gap-2 lg:hidden">
+            <button
+              onClick={() => setIsOpen((v) => !v)}
+              className="p-3 rounded-full text-slate-100 hover:bg-white/10"
+            >
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile / Tablet Nav */}
@@ -154,7 +156,7 @@ export default function Navbar() {
                     }
                     className={clsx(
                       "flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-300",
-                      "text-slate-200 hover:text-white hover:bg-cyan-600/20",
+                      "text-slate-600 dark:text-slate-200 hover:text-cyan-600 dark:hover:text-white hover:bg-cyan-600/10 dark:hover:bg-cyan-600/20",
                       isActive &&
                         "bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white shadow-xl"
                     )}

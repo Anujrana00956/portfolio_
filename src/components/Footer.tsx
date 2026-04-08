@@ -77,7 +77,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative overflow-hidden text-white bg-slate-900">
+    <footer className="relative overflow-hidden text-white bg-slate-950 transition-colors duration-300">
       {/* Subtle Gradient Overlay */}
       <motion.div
         className="absolute inset-0 bg-gradient-to-r from-slate-800 via-slate-900 to-slate-950 opacity-20"
@@ -114,10 +114,10 @@ export default function Footer() {
       <div className="relative z-10 max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-8">
         {/* Logo & Scroll Top */}
         <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          <h2 className="text-2xl font-bold cursor-pointer" onClick={scrollToTop}>Anuj Rana</h2>
+          <h2 className="text-2xl font-black cursor-pointer text-white" onClick={scrollToTop}>Anuj Rana</h2>
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-2 mt-2 text-slate-400 hover:text-white transition"
+            className="flex items-center gap-2 mt-2 text-slate-400 hover:text-white transition font-bold"
           >
             <ArrowUp size={18} /> Back to top
           </button>
@@ -125,13 +125,13 @@ export default function Footer() {
 
         {/* Quick Links */}
         <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
+          <h3 className="text-lg font-black mb-3 text-white">Quick Links</h3>
           <div className="flex flex-col gap-2">
             {quickLinks.map((link) => (
               <motion.a
                 key={link.name}
                 href={link.href}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-800/30 backdrop-blur-md text-slate-200 hover:text-white hover:scale-105 transition"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-800/30 backdrop-blur-md text-slate-200 hover:text-white hover:scale-105 transition font-bold"
                 whileHover={{ rotateX: 5, rotateY: 5 }}
               >
                 <link.icon size={18} /> {link.name}
@@ -142,13 +142,13 @@ export default function Footer() {
 
         {/* Contact Info */}
         <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          <h3 className="text-lg font-semibold mb-3">Contact</h3>
+          <h3 className="text-lg font-black mb-3 text-white">Contact</h3>
           <div className="flex flex-col gap-2">
             {contactInfo.map((info) => (
               <motion.a
                 key={info.text}
                 href={info.href}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-800/30 backdrop-blur-md text-slate-200 hover:text-white hover:scale-105 transition"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-800/30 backdrop-blur-md text-slate-200 hover:text-white hover:scale-105 transition font-bold"
                 whileHover={{ rotateX: 5, rotateY: 5 }}
               >
                 <info.icon size={18} /> {info.text}
@@ -159,7 +159,7 @@ export default function Footer() {
 
         {/* Social Links */}
         <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          <h3 className="text-lg font-semibold mb-3">Social</h3>
+          <h3 className="text-lg font-black mb-3 text-white">Social</h3>
           <div className="flex gap-4 mt-2">
             {socialLinks.map((social, i) => (
               <motion.a
@@ -167,7 +167,7 @@ export default function Footer() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition"
+                className="p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition shadow-sm"
                 whileHover={{ scale: 1.2, rotateY: 180 }}
                 animate={{ y: [0, -5, 0] }}
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: i * 0.2 }}
@@ -181,11 +181,11 @@ export default function Footer() {
 
       {/* Footer Bottom */}
       <motion.div
-        className="border-t border-slate-700 pt-6 text-center text-slate-400 text-sm flex flex-col md:flex-row justify-center items-center gap-2"
+        className="border-t border-slate-700 py-8 text-center text-slate-400 text-sm flex flex-col md:flex-row justify-center items-center gap-2 font-bold"
         variants={heartBeat}
         animate="animate"
       >
-        <span>Made with</span> <Heart size={16} className="text-red-500" /> <span>by Anuj Rana</span>
+        <span>Made with</span> <Heart size={16} className="text-red-500 fill-current" /> <span>by Anuj Rana</span>
       </motion.div>
     </footer>
   );

@@ -1,7 +1,10 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+} from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
   Mail,
@@ -16,7 +19,7 @@ import {
 export default function Hero() {
   const titles = useMemo(
     () => ["Flutter Developer", "Mobile App Engineer", "UI/UX Enthusiast"],
-    []
+    [],
   );
   const [currentTitle, setCurrentTitle] = useState(0);
 
@@ -38,42 +41,42 @@ export default function Hero() {
   ];
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-slate-900 via-slate-800 to-slate-950 text-white px-6 md:px-12 pt-24">
-      {/* Floating background blobs */}
-      <motion.div
-        className="absolute top-0 left-0 w-full h-full pointer-events-none"
-        animate={{ rotate: [0, 360] }}
-        transition={{ repeat: Infinity, duration: 120, ease: "linear" }}
-      >
-        {[...Array(15)].map((_, i) => (
+    <section
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-transparent text-white px-6 md:px-12 pt-24 transition-colors duration-300"
+    >
+      {/* Floating background blobs - Subtle & Static Positioning */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[...Array(10)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute bg-cyan-500/20 rounded-full"
+            className="absolute bg-cyan-500/10 rounded-full blur-3xl"
             style={{
-              width: `${Math.random() * 12 + 6}px`,
-              height: `${Math.random() * 12 + 6}px`,
+              width: `${200 + Math.random() * 200}px`,
+              height: `${200 + Math.random() * 200}px`,
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
             }}
             animate={{
-              y: [`0%`, `${Math.random() * 15 - 7}%`, `0%`],
-              x: [`0%`, `${Math.random() * 15 - 7}%`, `0%`],
-              scale: [1, 1.5, 1],
+              opacity: [0.05, 0.15, 0.05],
+              scale: [1, 1.1, 1],
             }}
             transition={{
-              duration: Math.random() * 6 + 4,
+              duration: 10 + Math.random() * 10,
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: "linear",
             }}
           />
         ))}
-      </motion.div>
+      </div>
 
-      <div className="relative z-10 text-center max-w-5xl flex flex-col gap-10 min-h-[80vh] justify-center" id ='home'>
+      <div
+        className="relative z-10 text-center max-w-5xl flex flex-col gap-10 min-h-[80vh] justify-center"
+        id="home"
+      >
         {/* Greeting */}
         <motion.div
-          className="inline-block px-8 py-4 bg-cyan-600/20 rounded-full text-cyan-100 font-semibold text-lg md:text-xl"
-          initial={{ y: 50, opacity: 0 }}
+          className="inline-block self-center px-8 py-4 bg-cyan-600/20 rounded-full text-cyan-100 font-semibold text-lg md:text-xl"
+          initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
@@ -81,33 +84,27 @@ export default function Hero() {
         </motion.div>
 
         {/* Animated Titles */}
-        <div className="relative h-32 overflow-hidden">
+        <div className="relative h-24 md:h-32 overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.h1
               key={currentTitle}
               className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-cyan-300 via-blue-400 to-violet-400 bg-clip-text text-transparent"
-              initial={{ y: 100, opacity: 0, rotate: -5, skewY: 5 }}
-              animate={{ y: 0, opacity: 1, rotate: 0, skewY: 0 }}
-              exit={{ y: -100, opacity: 0, rotate: 5, skewY: -5 }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
+              initial={{ y: 40, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -40, opacity: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
             >
               {titles[currentTitle]}
             </motion.h1>
           </AnimatePresence>
-
-          <motion.div
-            className="h-1 w-40 bg-gradient-to-r from-cyan-300 via-blue-400 to-violet-400 mx-auto mt-4 rounded-full"
-            animate={{ scaleX: [0, 1, 0] }}
-            transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-          />
         </div>
 
         {/* Short Description */}
         <motion.p
-          className="text-slate-200 mt-2 text-lg md:text-2xl max-w-3xl mx-auto"
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          className="text-slate-200 mt-2 text-lg md:text-2xl max-w-3xl mx-auto leading-relaxed"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
         >
           Crafting{" "}
           <span className="text-cyan-300 font-semibold">
@@ -117,27 +114,20 @@ export default function Hero() {
         </motion.p>
 
         {/* Buttons */}
-        <motion.div
-          className="flex flex-col sm:flex-row gap-6 justify-center mt-6"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-        >
+        <div className="flex flex-col sm:flex-row gap-6 justify-center mt-6">
           <Button
             onClick={() => {
               const contactSection = document.getElementById("contact");
               if (contactSection) {
-                const yOffset = -80; // adjust offset (e.g., header height)
-                const y =
-                  contactSection.getBoundingClientRect().top +
-                  window.pageYOffset +
-                  yOffset;
-                window.scrollTo({ top: y, behavior: "smooth" });
+                window.scrollTo({
+                  top: contactSection.offsetTop - 80,
+                  behavior: "smooth"
+                });
               }
             }}
-            className="bg-cyan-600/80 hover:bg-cyan-500 px-10 py-5 rounded-full text-lg md:text-xl font-semibold shadow-lg transition-all duration-300"
+            className="bg-cyan-600/80 hover:bg-cyan-500 px-10 py-5 rounded-full text-lg md:text-xl font-semibold shadow-lg transition-all duration-300 text-white"
           >
-            <Mail className="mr-2 h-5 w-5 animate-bounce" /> Let’s Connect
+            <Mail className="mr-2 h-5 w-5" /> Let’s Connect
           </Button>
 
           <a
@@ -145,48 +135,44 @@ export default function Hero() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button className="border-2 border-cyan-400 text-cyan-100 px-10 py-5 rounded-full text-lg md:text-xl font-semibold transition-all duration-300 hover:bg-slate-800/50">
-              <Download className="mr-2 h-5 w-5 animate-bounce" /> Resume
+            <Button
+              variant="outline"
+              className="border-2 border-cyan-400 bg-slate-900/50 text-cyan-200 px-10 py-5 rounded-full text-lg md:text-xl font-semibold transition-all duration-300 hover:bg-cyan-500 hover:text-slate-900"
+            >
+              <Download className="mr-2 h-5 w-5" /> Resume
             </Button>
           </a>
-        </motion.div>
+        </div>
 
         {/* Stats Section */}
-        <motion.div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mt-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mt-12">
           {stats.map(({ number, label, icon: Icon }, i) => (
             <motion.div
               key={label}
-              whileHover={{
-                scale: 1.12,
-                rotateY: 15,
-                rotateX: 5,
-                y: -5,
-                boxShadow: "0 25px 50px rgba(56,189,248,0.5)",
-              }}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.15, duration: 0.6, type: "spring" }}
-              className="p-8 rounded-3xl border border-cyan-400/20 bg-gradient-to-br from-slate-900/70 to-slate-800/70 backdrop-blur-lg shadow-xl flex flex-col items-center justify-center transition-all"
+              transition={{ delay: 0.5 + i * 0.1 }}
+              className="p-8 rounded-3xl border border-cyan-400/10 bg-slate-900/40 backdrop-blur-md flex flex-col items-center justify-center transition-all hover:border-cyan-400/30"
             >
-              <Icon className="h-12 w-12 text-cyan-300 mb-4" />
-              <h4 className="text-4xl md:text-5xl font-bold text-white">
+              <Icon className="h-10 w-10 text-cyan-300 mb-4" />
+              <h4 className="text-3xl md:text-4xl font-bold text-white">
                 {number}
               </h4>
-              <p className="text-slate-300 text-center mt-2 text-lg md:text-xl">
+              <p className="text-slate-400 text-center mt-2 text-sm md:text-base">
                 {label}
               </p>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Scroll Indicator */}
         <motion.button
           onClick={scrollToNext}
-          className="text-cyan-300 hover:text-cyan-200 mt-12 transition-all duration-300"
-          animate={{ y: [0, -12, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="text-cyan-300 hover:text-cyan-200 mt-12 self-center transition-all duration-300"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
         >
-          <ChevronDown size={40} className="mx-auto" />
+          <ChevronDown size={40} />
         </motion.button>
       </div>
     </section>

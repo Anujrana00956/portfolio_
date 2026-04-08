@@ -218,7 +218,7 @@ export default function Contact() {
     <section
       ref={ref}
       id="contact"
-      className="relative py-28 bg-slate-950 overflow-hidden"
+      className="relative py-28 bg-slate-950 overflow-hidden transition-colors duration-300"
     >
       {/* Background and sparkles */}
       <motion.div
@@ -227,7 +227,7 @@ export default function Contact() {
         transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
         style={{
           background:
-            "radial-gradient(circle at 20% 30%, rgba(59,130,246,0.25), transparent 70%), radial-gradient(circle at 80% 70%, rgba(168,85,247,0.25), transparent 70%)",
+            "radial-gradient(circle at 20% 30%, rgba(59,130,246,0.15), transparent 70%), radial-gradient(circle at 80% 70%, rgba(168,85,247,0.15), transparent 70%)",
           backgroundSize: "200% 200%",
           filter: "blur(80px)",
         }}
@@ -243,7 +243,7 @@ export default function Contact() {
             top: `${Math.random() * 100}%`,
             left: `${Math.random() * 100}%`,
           }}
-          animate={{ y: [0, -30, 0], x: [0, 20, 0], opacity: [0.3, 0.8, 0.3] }}
+          animate={{ y: [0, -30, 0], x: [0, 20, 0], opacity: [0.2, 0.6, 0.2] }}
           transition={{
             duration: 8 + Math.random() * 5,
             repeat: Infinity,
@@ -264,7 +264,7 @@ export default function Contact() {
           <h2 className="text-6xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
             Let’s Build Something Great
           </h2>
-          <p className="text-slate-400 mt-6 max-w-3xl mx-auto text-lg leading-relaxed">
+          <p className="text-slate-400 mt-6 max-w-3xl mx-auto text-lg leading-relaxed font-medium">
             Whether you have a bold new project, want to collaborate, or simply
             wish to say hi — I’m always open to connecting. Drop me a message
             below and let’s craft something meaningful together. 🚀
@@ -298,8 +298,8 @@ export default function Contact() {
                       <info.icon className="text-white h-6 w-6" />
                     </motion.div>
                     <div>
-                      <p className="text-slate-400 text-sm">{info.label}</p>
-                      <p className="text-white font-semibold text-lg">
+                      <p className="text-slate-400 text-sm font-bold uppercase tracking-widest">{info.label}</p>
+                      <p className="text-white font-bold text-lg">
                         {info.value}
                       </p>
                     </div>
@@ -310,7 +310,7 @@ export default function Contact() {
 
             {/* Social Links */}
             <div className="pt-6">
-              <h3 className="text-white font-semibold mb-4 text-lg">
+              <h3 className="text-white font-bold mb-4 text-lg">
                 Connect on Socials
               </h3>
               <div className="flex space-x-4">
@@ -322,9 +322,9 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.2, rotateY: 360 }}
                     transition={{ duration: 0.7 }}
-                    className={`p-4 rounded-xl bg-gradient-to-br ${s.gradient} shadow-xl`}
+                    className={`p-4 rounded-xl bg-gradient-to-br ${s.gradient} shadow-xl text-white`}
                   >
-                    <s.icon className="text-white h-6 w-6" />
+                    <s.icon className="h-6 w-6" />
                   </motion.a>
                 ))}
               </div>
@@ -340,8 +340,8 @@ export default function Contact() {
                   <Clock className="text-green-400 h-6 w-6" />
                 </div>
                 <div>
-                  <p className="text-white font-semibold">Quick Response</p>
-                  <p className="text-green-400 text-sm">
+                  <p className="text-white font-bold">Quick Response</p>
+                  <p className="text-green-400 text-sm font-bold">
                     Usually within 24 hours
                   </p>
                 </div>
@@ -354,19 +354,19 @@ export default function Contact() {
             style={{ rotateX, rotateY }}
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.3 }}
-            className="relative bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-slate-700/50 rounded-3xl shadow-2xl overflow-hidden backdrop-blur-2xl"
+            className="relative bg-slate-900/80 border border-slate-700/50 rounded-3xl shadow-2xl overflow-hidden backdrop-blur-2xl"
           >
             <motion.div
               className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-40 blur-2xl"
-              animate={{ opacity: [0.3, 0.6, 0.3] }}
+              animate={{ opacity: [0.2, 0.4, 0.2] }}
               transition={{ duration: 3, repeat: Infinity }}
             />
             <div className="relative z-10 p-8">
               <div className="flex items-center mb-8">
-                <div className="p-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 mr-3 shadow-lg">
+                <div className="p-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 mr-3 shadow-lg">
                   <Send className="text-white h-6 w-6" />
                 </div>
-                <h3 className="text-2xl font-bold text-transparent bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text">
+                <h3 className="text-2xl font-bold text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
                   Send a Message
                 </h3>
               </div>
@@ -379,7 +379,7 @@ export default function Contact() {
                     { name: "lastName", label: "Last Name" },
                   ].map((f) => (
                     <div key={f.name}>
-                      <label className="text-slate-400 text-sm mb-1 block">
+                      <label className="text-slate-400 text-sm mb-1 block font-bold uppercase tracking-wider">
                         {f.label}
                       </label>
                       <div className="relative">
@@ -394,7 +394,7 @@ export default function Contact() {
                               [f.name]: e.target.value,
                             })
                           }
-                          className="w-full pl-9 pr-3 py-2 bg-slate-900/50 border border-slate-700 rounded-lg focus:border-blue-500 text-white"
+                          className="w-full pl-9 pr-3 py-2 bg-slate-900/50 border border-slate-700 rounded-lg focus:border-blue-500 text-white outline-none transition-all font-medium"
                         />
                       </div>
                     </div>
@@ -403,7 +403,7 @@ export default function Contact() {
 
                 {/* Email */}
                 <div>
-                  <label className="text-slate-400 text-sm mb-1 block">
+                  <label className="text-slate-400 text-sm mb-1 block font-bold uppercase tracking-wider">
                     Email
                   </label>
                   <div className="relative">
@@ -415,7 +415,7 @@ export default function Contact() {
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
                       }
-                      className="w-full pl-9 pr-3 py-2 bg-slate-900/50 border border-slate-700 rounded-lg focus:border-blue-500 text-white"
+                      className="w-full pl-9 pr-3 py-2 bg-slate-900/50 border border-slate-700 rounded-lg focus:border-blue-500 text-white outline-none transition-all font-medium"
                       required
                     />
                   </div>
@@ -423,7 +423,7 @@ export default function Contact() {
 
                 {/* Subject */}
                 <div>
-                  <label className="text-slate-400 text-sm mb-1 block">
+                  <label className="text-slate-400 text-sm mb-1 block font-bold uppercase tracking-wider">
                     Subject
                   </label>
                   <div className="relative">
@@ -434,14 +434,14 @@ export default function Contact() {
                       onChange={(e) =>
                         setFormData({ ...formData, subject: e.target.value })
                       }
-                      className="w-full pl-9 pr-3 py-2 bg-slate-900/50 border border-slate-700 rounded-lg focus:border-blue-500 text-white"
+                      className="w-full pl-9 pr-3 py-2 bg-slate-900/50 border border-slate-700 rounded-lg focus:border-blue-500 text-white outline-none transition-all font-medium"
                     />
                   </div>
                 </div>
 
                 {/* Message */}
                 <div>
-                  <label className="text-slate-400 text-sm mb-1 block">
+                  <label className="text-slate-400 text-sm mb-1 block font-bold uppercase tracking-wider">
                     Message
                   </label>
                   <div className="relative">
@@ -454,7 +454,7 @@ export default function Contact() {
                         setFormData({ ...formData, message: e.target.value })
                       }
                       rows={5}
-                      className="w-full pl-9 pr-3 py-2 bg-slate-900/50 border border-slate-700 rounded-lg focus:border-blue-500 text-white resize-none"
+                      className="w-full pl-9 pr-3 py-2 bg-slate-900/50 border border-slate-700 rounded-lg focus:border-blue-500 text-white outline-none transition-all font-medium resize-none"
                     />
                   </div>
                 </div>
@@ -464,7 +464,7 @@ export default function Contact() {
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="flex items-center text-red-400 text-sm"
+                    className="flex items-center text-red-400 text-sm font-bold"
                   >
                     <AlertCircle className="h-4 w-4 mr-1" /> {error}
                   </motion.div>
@@ -476,10 +476,10 @@ export default function Contact() {
                   whileTap={{ scale: 0.97 }}
                   disabled={isSubmitting || isSubmitted || !isEmailValid}
                   type="submit"
-                  className="relative w-full py-4 rounded-xl text-white font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-lg overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="relative w-full py-4 rounded-xl text-white font-black uppercase tracking-widest bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 shadow-lg overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-pink-500 via-blue-500 to-purple-500 opacity-0"
+                    className="absolute inset-0 bg-gradient-to-r from-pink-600 via-blue-600 to-purple-600 opacity-0"
                     whileHover={{ opacity: 0.3, x: ["0%", "100%"] }}
                     transition={{ duration: 1 }}
                   />
