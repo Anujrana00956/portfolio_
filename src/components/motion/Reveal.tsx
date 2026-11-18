@@ -58,6 +58,9 @@ export default function Reveal({
           delay,
           ease: "power4.out",
           immediateRender: true,
+          onComplete: () => {
+            el.style.willChange = "auto";
+          },
           scrollTrigger: {
             trigger: el,
             start: "top 90%",
@@ -66,9 +69,6 @@ export default function Reveal({
               : "play reverse play reverse",
             onEnter: () => {
               el.style.willChange = "transform, opacity, filter";
-            },
-            onComplete: () => {
-              el.style.willChange = "auto";
             },
           },
         }
