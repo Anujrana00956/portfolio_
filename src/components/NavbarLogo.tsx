@@ -55,9 +55,9 @@ const NavbarLogo = () => {
       </motion.div>
 
       {/* Text Logo */}
-      <motion.div className="relative overflow-hidden">
+      <motion.div className="relative min-w-0 overflow-hidden">
         <motion.span
-          className="text-lg sm:text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 tracking-tight"
+          className="block truncate text-base min-[380px]:text-lg sm:text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 tracking-tight"
           whileHover={{
             scale: 1.05,
             backgroundPosition: "200% center",

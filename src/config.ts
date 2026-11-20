@@ -15,5 +15,5 @@ export const profile = {
     github: "https://github.com/Anujrana00956",
     linkedin: "https://www.linkedin.com/in/anujrana0754/",
   },
-  resume: "/assets/ANUJ RANA (1).pdf",
+  resume: "/assets/Anuj_Rana_Resume.pdf",
 };
